@@ -13,14 +13,14 @@ export default function About() {
   return (
     <>
       {/* Header */}
-      <section className="py-20 md:py-28 border-b border-card-border">
+      <section className="py-10 md:py-28 border-b border-card-border">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <motion.h1
               {...fadeIn}
               className="text-3xl md:text-4xl lg:text-5xl font-mono font-bold leading-tight text-white"
             >
-              Tecnologia e IA al servicio de tu empresa.
+              Tecnología e IA al servicio de tu empresa.
             </motion.h1>
             <motion.p
               {...fadeIn}
@@ -40,13 +40,13 @@ export default function About() {
       </section>
 
       {/* Nuestra Mision */}
-      <section className="py-20 border-b border-card-border">
+      <section className="py-10 md:py-20 border-b border-card-border">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <motion.div {...fadeIn}>
               <div className="pipe-blue">
                 <h2 className="text-3xl md:text-4xl font-mono font-bold text-white">
-                  Nuestra mision
+                  Nuestra misión
                 </h2>
               </div>
             </motion.div>
@@ -67,13 +67,13 @@ export default function About() {
       </section>
 
       {/* Como trabajamos */}
-      <section className="py-20 border-b border-card-border">
+      <section className="py-10 md:py-20 border-b border-card-border">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <motion.div {...fadeIn}>
               <div className="pipe-blue">
                 <h2 className="text-3xl md:text-4xl font-mono font-bold text-white">
-                  Como trabajamos
+                  Cómo trabajamos
                 </h2>
               </div>
             </motion.div>
@@ -83,11 +83,11 @@ export default function About() {
               className="text-muted text-lg leading-relaxed"
             >
               No somos una software factory. Somos un equipo chico que trabaja
-              con pocos clientes a la vez, con dedicacion real. Nos integramos
-              con tu equipo, entendemos tu operacion y construimos exactamente
-              lo que necesitas. Usamos IA no solo en los productos que
+              con pocos clientes a la vez, con dedicación real. Nos integramos
+              con tu equipo, entendemos tu operación y construimos exactamente
+              lo que necesitás. Usamos IA no solo en los productos que
               entregamos, sino en nuestro propio proceso de desarrollo — lo que
-              nos permite movernos mas rapido y con mas inteligencia que el
+              nos permite movernos más rápido y con más inteligencia que el
               desarrollo tradicional.
             </motion.p>
           </div>
@@ -95,7 +95,7 @@ export default function About() {
       </section>
 
       {/* Valores */}
-      <section className="py-20 border-b border-card-border">
+      <section className="py-10 md:py-20 border-b border-card-border">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div {...fadeIn} className="mb-12">
             <div className="pipe-blue">
@@ -108,13 +108,13 @@ export default function About() {
           <div className="space-y-12 max-w-3xl">
             <motion.div {...fadeIn}>
               <h3 className="text-sm font-bold uppercase tracking-widest text-primary mb-4">
-                Foco y dedicacion
+                Foco y dedicación
               </h3>
               <p className="text-muted text-lg leading-relaxed">
                 Elegimos trabajar con pocos clientes para darle a cada proyecto
-                la atencion que merece. No escalamos por escalar — priorizamos
-                la calidad del resultado y la relacion con cada equipo. Nos
-                movemos rapido, pero nunca a costa de hacer las cosas bien.
+                la atención que merece. No escalamos por escalar — priorizamos
+                la calidad del resultado y la relación con cada equipo. Nos
+                movemos rápido, pero nunca a costa de hacer las cosas bien.
               </p>
             </motion.div>
 
@@ -123,11 +123,11 @@ export default function About() {
                 Resultados concretos
               </h3>
               <p className="text-muted text-lg leading-relaxed">
-                Cada linea de codigo, cada agente de IA, cada automatizacion que
+                Cada línea de código, cada agente de IA, cada automatización que
                 construimos tiene un objetivo claro: generar impacto medible en
-                tu operacion. No vendemos tecnologia por la tecnologia misma —
+                tu operación. No vendemos tecnología por la tecnología misma —
                 construimos herramientas que resuelven problemas reales y
-                ahorran tiempo todos los dias.
+                ahorran tiempo todos los días.
               </p>
             </motion.div>
           </div>

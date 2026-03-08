@@ -66,19 +66,48 @@ export default function TestimonialCarousel() {
                 className="rounded-2xl overflow-hidden"
                 style={{ background: "rgba(255, 255, 255, 0.04)" }}
               >
-                {/* Mobile: stacked, Desktop: 2 columns */}
-                <div className="flex flex-col md:flex-row">
-                  {/* Left column — logo + person */}
-                  <div className="p-6 md:p-8 md:w-[35%] flex flex-col justify-between border-b md:border-b-0 md:border-r border-white/[0.06]">
-                    <div className="mb-6">
-                      <Image
-                        src={testimonials[current].logo}
-                        alt={testimonials[current].company}
-                        width={120}
-                        height={32}
-                        className="h-7 w-auto object-contain opacity-60"
-                      />
+                {/* Mobile: compact single block */}
+                <div className="md:hidden p-5">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Image
+                      src={testimonials[current].image}
+                      alt={testimonials[current].name}
+                      width={44}
+                      height={44}
+                      className="w-11 h-11 rounded-full object-cover"
+                    />
+                    <div className="flex flex-col gap-0.5">
+                      <p className="font-bold text-white text-sm">
+                        {testimonials[current].name}
+                      </p>
+                      <span className="text-sm text-white/60">
+                        {testimonials[current].company}
+                      </span>
                     </div>
+                  </div>
+                  <div className="bg-white rounded-xl p-5">
+                    <svg
+                      width="24"
+                      height="18"
+                      viewBox="0 0 32 24"
+                      fill="none"
+                      className="mb-3"
+                    >
+                      <path
+                        d="M0 24V14.4C0 11.7333 0.4 9.33333 1.2 7.2C2.05333 5.06667 3.17333 3.2 4.56 1.6L9.36 4C8.18667 5.49333 7.33333 7.01333 6.8 8.56C6.32 10.1067 6.08 11.76 6.08 13.52H12V24H0ZM20 24V14.4C20 11.7333 20.4 9.33333 21.2 7.2C22.0533 5.06667 23.1733 3.2 24.56 1.6L29.36 4C28.1867 5.49333 27.3333 7.01333 26.8 8.56C26.32 10.1067 26.08 11.76 26.08 13.52H32V24H20Z"
+                        fill="#2563EB"
+                        fillOpacity="0.2"
+                      />
+                    </svg>
+                    <p className="text-gray-800 text-sm leading-relaxed font-mono">
+                      {testimonials[current].quote}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Desktop: 2 columns */}
+                <div className="hidden md:flex md:flex-row">
+                  <div className="p-8 md:w-[35%] flex flex-col justify-end border-r border-white/[0.06]">
                     <div className="flex items-center gap-4">
                       <Image
                         src={testimonials[current].image}
@@ -91,16 +120,15 @@ export default function TestimonialCarousel() {
                         <p className="font-bold text-white text-sm">
                           {testimonials[current].name}
                         </p>
-                        <p className="text-muted text-xs">
-                          {testimonials[current].role}
-                        </p>
+                        <span className="text-sm text-white/60">
+                          {testimonials[current].company}
+                        </span>
                       </div>
                     </div>
                   </div>
 
-                  {/* Right column — quote card */}
-                  <div className="p-6 md:p-8 md:w-[65%] flex items-center">
-                    <div className="bg-white rounded-xl p-6 md:p-8 w-full">
+                  <div className="p-8 md:w-[65%] flex items-center">
+                    <div className="bg-white rounded-xl p-8 w-full">
                       <svg
                         width="32"
                         height="24"
@@ -114,7 +142,7 @@ export default function TestimonialCarousel() {
                           fillOpacity="0.2"
                         />
                       </svg>
-                      <p className="text-gray-800 text-base md:text-lg leading-relaxed font-mono">
+                      <p className="text-gray-800 text-lg leading-relaxed font-mono">
                         {testimonials[current].quote}
                       </p>
                     </div>
@@ -132,15 +160,8 @@ export default function TestimonialCarousel() {
               background: "rgba(255, 255, 255, 0.03)",
             }}
           >
-            <div className="p-6 h-full flex flex-col justify-between">
-              <Image
-                src={testimonials[nextIndex].logo}
-                alt={testimonials[nextIndex].company}
-                width={100}
-                height={28}
-                className="h-6 w-auto object-contain opacity-40"
-              />
-              <div className="flex items-center gap-3 mt-auto">
+            <div className="p-6 h-full flex flex-col justify-end">
+              <div className="flex items-center gap-3">
                 <Image
                   src={testimonials[nextIndex].image}
                   alt={testimonials[nextIndex].name}
@@ -152,9 +173,9 @@ export default function TestimonialCarousel() {
                   <p className="text-white text-xs font-bold">
                     {testimonials[nextIndex].name}
                   </p>
-                  <p className="text-muted text-[10px]">
-                    {testimonials[nextIndex].role}
-                  </p>
+                  <span className="text-xs text-white/60">
+                    {testimonials[nextIndex].company}
+                  </span>
                 </div>
               </div>
             </div>
@@ -185,16 +206,20 @@ export default function TestimonialCarousel() {
       </button>
 
       {/* Dots */}
-      <div className="flex justify-center gap-2 mt-6">
+      <div className="flex justify-center gap-1 mt-6">
         {testimonials.map((_, i) => (
           <button
             key={i}
             onClick={() => setCurrent(i)}
-            className={`w-2 h-2 rounded-full transition-colors ${
-              i === current ? "bg-primary" : "bg-card-border"
-            }`}
+            className="p-3 flex items-center justify-center"
             aria-label={`Go to testimonial ${i + 1}`}
-          />
+          >
+            <span
+              className={`block w-2 h-2 rounded-full transition-colors ${
+                i === current ? "bg-primary" : "bg-card-border"
+              }`}
+            />
+          </button>
         ))}
       </div>
     </div>

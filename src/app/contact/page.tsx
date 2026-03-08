@@ -45,7 +45,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="py-20 md:py-28">
+    <section className="py-10 md:py-28">
       <div className="max-w-3xl mx-auto px-6">
         {/* Back button */}
         <motion.div
@@ -90,7 +90,7 @@ export default function Contact() {
             </h1>
           </div>
           <p className="text-muted text-lg">
-            Contanos tu desafio, nosotros tenemos la solucion
+            Contanos tu desafío, nosotros tenemos la solución
           </p>
         </motion.div>
 
@@ -140,7 +140,7 @@ export default function Contact() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label htmlFor="phone" className="block text-sm text-muted mb-2">
-                Telefono
+                Teléfono
               </label>
               <input
                 type="tel"
@@ -181,7 +181,7 @@ export default function Contact() {
               name="message"
               value={form.message}
               onChange={handleChange}
-              placeholder="Contanos sobre tu proyecto o desafio..."
+              placeholder="Contanos sobre tu proyecto o desafío..."
               rows={5}
               required
               className="w-full bg-card border border-card-border rounded-lg px-4 py-3 text-white placeholder:text-muted/50 focus:outline-none focus:border-primary transition-colors resize-none"
@@ -206,7 +206,7 @@ export default function Contact() {
               animate={{ opacity: 1 }}
               className="text-center text-green-400"
             >
-              Mensaje enviado con exito. Te respondemos pronto.
+              Mensaje enviado con éxito. Te respondemos pronto.
             </motion.p>
           )}
           {status === "error" && (
@@ -215,7 +215,7 @@ export default function Contact() {
               animate={{ opacity: 1 }}
               className="text-center text-red-400"
             >
-              Algo salio mal. Por favor, intenta de nuevo.
+              Algo salió mal. Por favor, intentá de nuevo.
             </motion.p>
           )}
         </motion.form>

@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
 import GridOverlay from "@/components/GridOverlay";
+import FloatingCTA from "@/components/FloatingCTA";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -22,18 +23,18 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Nautom — Agentes de IA y automatizacion para PyMEs argentinas",
+  title: "Nautom — Agentes de IA y automatización para PyMEs argentinas",
   description:
-    "Creamos agentes de inteligencia artificial, automatizamos procesos y desarrollamos aplicaciones internas a medida para PyMEs en Argentina. Agencia boutique de tecnologia AI-first.",
+    "Creamos agentes de inteligencia artificial, automatizamos procesos y desarrollamos aplicaciones internas a medida para PyMEs en Argentina. Agencia boutique de tecnología AI-first.",
   keywords: [
     "agentes de IA Argentina",
-    "automatizacion PyMEs",
+    "automatización PyMEs",
     "inteligencia artificial empresas",
-    "agencia automatizacion Argentina",
+    "agencia automatización Argentina",
     "desarrollo aplicaciones internas",
     "AI agents Argentina",
-    "automatizacion de procesos",
-    "sistemas de gestion PyMEs",
+    "automatización de procesos",
+    "sistemas de gestión PyMEs",
     "Nautom",
   ],
   icons: {
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
     apple: "/images/favicon_io/apple-touch-icon.png",
   },
   openGraph: {
-    title: "Nautom — Agentes de IA y automatizacion para PyMEs argentinas",
+    title: "Nautom — Agentes de IA y automatización para PyMEs argentinas",
     description:
       "Creamos agentes de IA, automatizamos operaciones y desarrollamos herramientas internas a medida.",
     url: "https://nautom.com",
@@ -72,7 +73,7 @@ export default function RootLayout({
               name: "Nautom",
               url: "https://nautom.com",
               description:
-                "Agencia boutique de inteligencia artificial y automatizacion para PyMEs argentinas. Creamos agentes de IA, automatizamos procesos y desarrollamos aplicaciones internas a medida.",
+                "Agencia boutique de inteligencia artificial y automatización para PyMEs argentinas. Creamos agentes de IA, automatizamos procesos y desarrollamos aplicaciones internas a medida.",
               foundingDate: "2023",
               founders: [
                 { "@type": "Person", name: "Juan" },
@@ -85,9 +86,9 @@ export default function RootLayout({
               knowsAbout: [
                 "Inteligencia artificial para empresas",
                 "Agentes de IA",
-                "Automatizacion de procesos",
+                "Automatización de procesos",
                 "Desarrollo de aplicaciones internas",
-                "Sistemas de gestion para PyMEs",
+                "Sistemas de gestión para PyMEs",
                 "AI agents",
                 "Business automation",
                 "Python",
@@ -97,10 +98,10 @@ export default function RootLayout({
               ],
               serviceType: [
                 "Agentes de inteligencia artificial",
-                "Automatizacion de procesos empresariales",
+                "Automatización de procesos empresariales",
                 "Desarrollo de aplicaciones internas",
                 "Integraciones de sistemas",
-                "Facturacion automatica",
+                "Facturación automática",
                 "MVPs y prototipos",
               ],
             }),
@@ -172,6 +173,7 @@ export default function RootLayout({
           <Navbar />
           <PageTransition>{children}</PageTransition>
           <Footer />
+          <FloatingCTA />
         </div>
         <Analytics />
         <SpeedInsights />

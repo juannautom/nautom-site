@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
@@ -40,20 +40,86 @@ const cases = [
   },
 ];
 
+const AUTO_ROTATE_MS = 8000;
+const RESUME_DELAY_MS = 20000;
+
 export default function CaseTabs() {
   const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const resumeRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [progressKey, setProgressKey] = useState(0);
+
+  const clearTimers = useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    if (resumeRef.current) clearTimeout(resumeRef.current);
+  }, []);
+
+  const startAutoRotate = useCallback(() => {
+    clearTimers();
+    setPaused(false);
+    setProgressKey((k) => k + 1);
+    timerRef.current = setInterval(() => {
+      setActive((prev) => (prev + 1) % cases.length);
+      setProgressKey((k) => k + 1);
+    }, AUTO_ROTATE_MS);
+  }, [clearTimers]);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setActive((prev) => (prev + 1) % cases.length);
-    }, 8000);
-    return () => clearInterval(timer);
-  }, []);
+    startAutoRotate();
+    return clearTimers;
+  }, [startAutoRotate, clearTimers]);
+
+  const handleTabClick = (i: number) => {
+    setActive(i);
+    clearTimers();
+    setPaused(true);
+    setProgressKey((k) => k + 1);
+    resumeRef.current = setTimeout(startAutoRotate, RESUME_DELAY_MS);
+  };
 
   const activeCase = cases[active];
 
   return (
     <div>
+      {/* Tab buttons — above content */}
+      <div className="flex flex-wrap justify-center gap-4 mb-10">
+        {cases.map((c, i) => (
+          <button
+            key={c.client}
+            onClick={() => handleTabClick(i)}
+            className={`px-6 py-3 rounded-lg text-sm font-medium transition-all border ${
+              i === active
+                ? "bg-primary/10 border-primary text-white"
+                : "bg-card border-card-border text-muted hover:border-primary/50"
+            }`}
+          >
+            {c.client}
+          </button>
+        ))}
+      </div>
+
+      {/* Progress bar */}
+      <div className="flex justify-center gap-2 mb-10">
+        {cases.map((_, i) => (
+          <div key={i} className="w-16 h-1 rounded-full bg-card-border overflow-hidden">
+            {i === active && !paused && (
+              <motion.div
+                key={progressKey}
+                className="h-full bg-primary rounded-full"
+                initial={{ width: "0%" }}
+                animate={{ width: "100%" }}
+                transition={{ duration: AUTO_ROTATE_MS / 1000, ease: "linear" }}
+              />
+            )}
+            {i === active && paused && (
+              <div className="h-full bg-primary rounded-full w-full" />
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* Case content */}
       <AnimatePresence mode="wait">
         <motion.div
           key={active}
@@ -61,7 +127,7 @@ export default function CaseTabs() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.4 }}
-          className="grid md:grid-cols-2 gap-8 mb-10"
+          className="grid md:grid-cols-2 gap-8"
         >
           {/* Left column - Stat */}
           <div>
@@ -103,39 +169,6 @@ export default function CaseTabs() {
           </div>
         </motion.div>
       </AnimatePresence>
-
-      {/* Tab buttons */}
-      <div className="flex flex-wrap justify-center gap-4">
-        {cases.map((c, i) => (
-          <button
-            key={c.client}
-            onClick={() => setActive(i)}
-            className={`px-6 py-3 rounded-lg text-sm font-medium transition-all border ${
-              i === active
-                ? "bg-primary/10 border-primary text-white"
-                : "bg-card border-card-border text-muted hover:border-primary/50"
-            }`}
-          >
-            {c.client}
-          </button>
-        ))}
-      </div>
-
-      {/* Progress bar */}
-      <div className="flex justify-center gap-2 mt-4">
-        {cases.map((_, i) => (
-          <div key={i} className="w-16 h-1 rounded-full bg-card-border overflow-hidden">
-            {i === active && (
-              <motion.div
-                className="h-full bg-primary rounded-full"
-                initial={{ width: "0%" }}
-                animate={{ width: "100%" }}
-                transition={{ duration: 8, ease: "linear" }}
-              />
-            )}
-          </div>
-        ))}
-      </div>
     </div>
   );
 }
