@@ -44,7 +44,7 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <motion.div {...fadeIn}>
-              <div className="pipe-blue">
+              <div className="pipe-copper">
                 <h2 className="text-3xl md:text-4xl font-mono font-bold text-white">
                   Nuestra misión
                 </h2>
@@ -71,7 +71,7 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <motion.div {...fadeIn}>
-              <div className="pipe-blue">
+              <div className="pipe-copper">
                 <h2 className="text-3xl md:text-4xl font-mono font-bold text-white">
                   Cómo trabajamos
                 </h2>
@@ -98,7 +98,7 @@ export default function About() {
       <section className="py-10 md:py-20 border-b border-card-border">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div {...fadeIn} className="mb-12">
-            <div className="pipe-blue">
+            <div className="pipe-copper">
               <h2 className="text-3xl md:text-4xl font-mono font-bold text-white">
                 Lo que nos define
               </h2>

@@ -40,12 +40,10 @@ export const metadata: Metadata = {
   ],
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "32x32", type: "image/x-icon" },
-      { url: "/nautom-icon.svg", type: "image/svg+xml" },
-      { url: "/images/favicon_io/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/images/favicon_io/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-32.svg", sizes: "32x32", type: "image/svg+xml" },
+      { url: "/favicon-512.svg", sizes: "512x512", type: "image/svg+xml" },
     ],
-    apple: "/images/favicon_io/apple-touch-icon.png",
+    apple: "/favicon-512.svg",
   },
   openGraph: {
     title: "Nautom — Agentes de IA y automatización para PyMEs argentinas",

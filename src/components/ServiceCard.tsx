@@ -21,7 +21,7 @@ export default function ServiceCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-30px" }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      whileHover={{ y: -4, borderColor: "rgba(37, 99, 235, 0.3)" }}
+      whileHover={{ y: -4, borderColor: "rgba(212, 128, 74, 0.3)" }}
       className="bg-card border border-card-border rounded-xl p-6 transition-all"
     >
       <div className="mb-4 w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center">
