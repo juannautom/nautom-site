@@ -17,7 +17,7 @@ export default function Footer() {
             <span className="text-white">A</span>
             <span className="text-white">U</span>
             <span className="text-white">T</span>
-            <span className="text-primary">O</span>
+            <span className="text-transparent" style={{ WebkitTextStroke: "1.5px #D4804A" }}>O</span>
             <span className="text-white">M</span>
           </div>
 
