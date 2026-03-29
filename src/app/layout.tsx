@@ -53,21 +53,12 @@ export const metadata: Metadata = {
     siteName: "Nautom",
     locale: "es_AR",
     type: "website",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Nautom — Agentes IA para PyMEs",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Nautom — Estudio de tecnología AI-first",
     description:
       "Construimos productos propios y proyectos a medida con enfoque AI-first para PyMEs argentinas.",
-    images: ["/og-image.png"],
   },
 };
 
