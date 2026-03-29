@@ -193,7 +193,7 @@ export default function Contact() {
             <button
               type="submit"
               disabled={status === "sending"}
-              className="bg-white text-background font-medium px-10 py-3 rounded-full hover:bg-gray-200 transition-colors disabled:opacity-50"
+              className="bg-primary text-white font-medium px-10 py-3 rounded-full hover:bg-primary-light transition-colors disabled:opacity-50"
             >
               {status === "sending" ? "Enviando..." : "Enviar mensaje"}
             </button>
