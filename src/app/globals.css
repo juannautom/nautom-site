@@ -88,10 +88,21 @@ html {
 .animate-float-mg { animation: float-mg 4.5s ease-in-out infinite; }
 .animate-float-bg { animation: float-bg 7s ease-in-out infinite; }
 
+/* Scroll hint bounce */
+@keyframes scroll-hint-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+
+.scroll-hint-bounce {
+  animation: scroll-hint-bounce 2s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-float-fg,
   .animate-float-mg,
-  .animate-float-bg {
+  .animate-float-bg,
+  .scroll-hint-bounce {
     animation: none;
   }
 }
