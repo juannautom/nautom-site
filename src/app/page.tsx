@@ -10,13 +10,19 @@ import SectionTitle from "@/components/SectionTitle";
 import FAQAccordion from "@/components/FAQAccordion";
 import TeamSection from "@/components/TeamSection";
 import HowWeWork from "@/components/HowWeWork";
+import FloatingUIFragments from "@/components/FloatingUIFragments";
 
 export default function Home() {
   return (
     <>
       {/* ── 1. Hero ──────────────────────────────────────────────── */}
-      <section className="py-16 md:py-36 border-b border-card-border">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="relative py-16 md:py-36 border-b border-card-border overflow-hidden">
+        {/* Floating UI fragments — positioned absolute, hidden on mobile */}
+        <div className="hidden md:block absolute inset-0 pointer-events-none">
+          <FloatingUIFragments />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
