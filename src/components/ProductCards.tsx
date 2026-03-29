@@ -180,67 +180,85 @@ function PadelAppMockup() {
   );
 }
 
-/** Nautom Suites — aspirational search with property cards */
+/** Nautom Suites — property listing with horizontal card carousel */
 function SuitesMockup() {
+  const properties = [
+    { name: "CENTRO LOFTS II", price: "Desde $52.000", info: "2 dorm. | 1 baño", gradient: "from-amber-800/60 via-stone-600/50 to-amber-900/60" },
+    { name: "VISTA PARK I", price: "Desde $68.000", info: "3 dorm. | 2 baños", gradient: "from-slate-500/50 via-stone-400/40 to-slate-600/50" },
+    { name: "CENTRO LOFTS I", price: "Desde $45.000", info: "1 dorm. | 1 baño", gradient: "from-stone-500/50 via-amber-700/40 to-stone-600/50" },
+    { name: "VISTA PARK II", price: "Desde $74.000", info: "3 dorm. | 2 baños", gradient: "from-slate-600/50 via-zinc-500/40 to-slate-500/50" },
+  ];
+
   return (
     <div className="absolute inset-0 top-8 overflow-hidden">
-      {/* Background gradient simulating a property photo */}
-      <div className="absolute inset-0 bg-gradient-to-br from-sky-300 via-sky-200 to-blue-100" />
-      <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/40 to-transparent" />
+      {/* Dark background */}
+      <div className="absolute inset-0 bg-[#1a1a2e]" />
 
-      {/* Content overlay */}
-      <div className="relative p-3 flex flex-col h-full gap-2">
-        {/* Logo + title */}
-        <div className="flex items-center gap-1.5">
-          <span className="text-[7px] font-bold text-slate-800">Nautom Suites</span>
-        </div>
-
-        {/* Search bar — Airbnb style */}
-        <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-2 flex items-center gap-2">
-          <div className="flex-1">
-            <span className="text-[5px] text-slate-400 block">Complejo</span>
-            <span className="text-[6px] text-slate-700 font-medium">Costa del Este</span>
+      <div className="relative flex flex-col h-full">
+        {/* Browser bar */}
+        <div className="flex items-center gap-1 px-2 py-1 bg-[#2a2a3e] border-b border-white/5">
+          <div className="flex gap-0.5">
+            <div className="w-1 h-1 rounded-full bg-red-400/70" />
+            <div className="w-1 h-1 rounded-full bg-yellow-400/70" />
+            <div className="w-1 h-1 rounded-full bg-green-400/70" />
           </div>
-          <div className="w-px h-5 bg-slate-200" />
-          <div className="flex-1">
-            <span className="text-[5px] text-slate-400 block">Llegada</span>
-            <span className="text-[6px] text-slate-700 font-medium">15 Abr</span>
-          </div>
-          <div className="w-px h-5 bg-slate-200" />
-          <div className="flex-1">
-            <span className="text-[5px] text-slate-400 block">Salida</span>
-            <span className="text-[6px] text-slate-700 font-medium">20 Abr</span>
-          </div>
-          <div className="w-px h-5 bg-slate-200" />
-          <div className="flex-1">
-            <span className="text-[5px] text-slate-400 block">Huéspedes</span>
-            <span className="text-[6px] text-slate-700 font-medium">2 adultos</span>
-          </div>
-          <div className="w-5 h-5 rounded-full bg-sky-500 flex items-center justify-center">
-            <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
+          <div className="flex-1 mx-1 bg-[#1a1a2e] rounded px-1.5 py-0.5">
+            <span className="text-[4.5px] text-white/40">suites.nautom.com</span>
           </div>
         </div>
 
-        {/* Property cards */}
-        <div className="flex-1 flex gap-1.5 mt-1">
-          {[
-            { name: "Suite Premium", price: "$45.000/noche", beds: "2 amb", color: "from-sky-400 to-blue-400" },
-            { name: "Suite Deluxe", price: "$38.000/noche", beds: "1 amb", color: "from-teal-400 to-emerald-400" },
-            { name: "Suite Familiar", price: "$55.000/noche", beds: "3 amb", color: "from-violet-400 to-purple-400" },
-          ].map((prop) => (
-            <div key={prop.name} className="flex-1 bg-white rounded-lg border border-slate-200 overflow-hidden shadow-sm flex flex-col">
-              <div className={`h-10 bg-gradient-to-br ${prop.color} opacity-80`} />
-              <div className="p-1.5 flex-1 flex flex-col justify-between">
-                <div>
-                  <span className="text-[6px] font-bold text-slate-700 block">{prop.name}</span>
-                  <span className="text-[5px] text-slate-400">{prop.beds}</span>
+        {/* Navbar */}
+        <div className="flex items-center justify-between px-3 py-1.5 bg-[#1a1a2e] border-b border-white/5">
+          <span className="text-[7px] font-bold text-white tracking-wide">Nautom</span>
+          <div className="bg-[#D4854A] rounded px-2 py-0.5">
+            <span className="text-[5px] text-white font-medium">Ver disponibilidad</span>
+          </div>
+        </div>
+
+        {/* Filter tabs */}
+        <div className="flex items-center gap-3 px-3 pt-2 pb-1">
+          <div className="flex flex-col items-center">
+            <span className="text-[6px] text-white font-medium">Todos</span>
+            <div className="w-full h-[1.5px] bg-[#D4854A] rounded-full mt-0.5" />
+          </div>
+          <span className="text-[6px] text-white/40">Centro Lofts</span>
+          <span className="text-[6px] text-white/40">Vista Park</span>
+        </div>
+
+        {/* Property cards carousel */}
+        <div className="flex-1 px-1 pt-1 pb-2">
+          <div className="flex gap-1.5 h-full" style={{ marginLeft: "-8px", marginRight: "-8px" }}>
+            {properties.map((prop, i) => (
+              <div
+                key={prop.name}
+                className="flex-shrink-0 rounded-lg overflow-hidden flex flex-col"
+                style={{
+                  width: "38%",
+                  opacity: i === 0 || i === 3 ? 0.6 : 1,
+                  marginLeft: i === 0 ? "4px" : undefined,
+                }}
+              >
+                {/* Photo area — warm architectural gradients */}
+                <div className={`h-14 bg-gradient-to-br ${prop.gradient} relative`}>
+                  {/* Subtle texture overlays */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-transparent to-white/5" />
                 </div>
-                <span className="text-[6px] font-bold text-sky-600">{prop.price}</span>
+                {/* Card info */}
+                <div className="bg-[#2a2a3e] p-1.5 flex-1 flex flex-col gap-0.5">
+                  <span className="text-[5.5px] font-bold text-white tracking-wider">{prop.name}</span>
+                  <span className="text-[6.5px] font-bold text-[#D4854A]">{prop.price}</span>
+                  <span className="text-[4.5px] text-white/40">{prop.info}</span>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="flex items-center justify-between px-3 py-1 bg-[#1a1a2e] border-t border-white/5">
+          <span className="text-[5px] text-white/30 font-medium">Nautom</span>
+          <span className="text-[4.5px] text-white/20">Córdoba, Argentina</span>
         </div>
       </div>
     </div>
