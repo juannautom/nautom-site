@@ -45,13 +45,13 @@ export default function Contact() {
   };
 
   return (
-    <section className="py-10 md:py-28">
+    <section className="py-6 md:py-12">
       <div className="max-w-3xl mx-auto px-6">
         {/* Back button */}
         <motion.div
           initial={{ opacity: 0, x: -10 }}
           animate={{ opacity: 1, x: 0 }}
-          className="mb-12"
+          className="mb-4"
         >
           <Link
             href="/"
@@ -81,15 +81,15 @@ export default function Contact() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="text-center mb-12"
+          className="text-center mb-6"
         >
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="w-1 h-8 bg-primary rounded-full" />
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-mono font-bold text-white">
+          <div className="flex items-center justify-center gap-3 mb-1">
+            <div className="w-1 h-6 bg-primary rounded-full" />
+            <h1 className="text-2xl md:text-3xl font-mono font-bold text-white">
               Hablemos de tu proyecto
             </h1>
           </div>
-          <p className="text-muted text-lg">
+          <p className="text-muted text-base">
             Contanos tu desafío, nosotros tenemos la solución
           </p>
         </motion.div>
@@ -100,12 +100,12 @@ export default function Contact() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
           onSubmit={handleSubmit}
-          className="space-y-6"
+          className="space-y-4"
         >
           {/* Row 1 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label htmlFor="name" className="block text-sm text-muted mb-2">
+              <label htmlFor="name" className="block text-sm text-muted mb-1">
                 Nombre
               </label>
               <input
@@ -116,11 +116,11 @@ export default function Contact() {
                 onChange={handleChange}
                 placeholder="Juan Perez"
                 required
-                className="w-full bg-card border border-card-border rounded-lg px-4 py-3 text-white placeholder:text-muted/50 focus:outline-none focus:border-primary transition-colors"
+                className="w-full bg-card border border-card-border rounded-lg px-3 py-2 text-white placeholder:text-muted/50 focus:outline-none focus:border-primary transition-colors"
               />
             </div>
             <div>
-              <label htmlFor="email" className="block text-sm text-muted mb-2">
+              <label htmlFor="email" className="block text-sm text-muted mb-1">
                 Email
               </label>
               <input
@@ -131,15 +131,15 @@ export default function Contact() {
                 onChange={handleChange}
                 placeholder="ejemplo@email.com"
                 required
-                className="w-full bg-card border border-card-border rounded-lg px-4 py-3 text-white placeholder:text-muted/50 focus:outline-none focus:border-primary transition-colors"
+                className="w-full bg-card border border-card-border rounded-lg px-3 py-2 text-white placeholder:text-muted/50 focus:outline-none focus:border-primary transition-colors"
               />
             </div>
           </div>
 
           {/* Row 2 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label htmlFor="phone" className="block text-sm text-muted mb-2">
+              <label htmlFor="phone" className="block text-sm text-muted mb-1">
                 Teléfono
               </label>
               <input
@@ -149,13 +149,13 @@ export default function Contact() {
                 value={form.phone}
                 onChange={handleChange}
                 placeholder="+54 11 1234-5678"
-                className="w-full bg-card border border-card-border rounded-lg px-4 py-3 text-white placeholder:text-muted/50 focus:outline-none focus:border-primary transition-colors"
+                className="w-full bg-card border border-card-border rounded-lg px-3 py-2 text-white placeholder:text-muted/50 focus:outline-none focus:border-primary transition-colors"
               />
             </div>
             <div>
               <label
                 htmlFor="company"
-                className="block text-sm text-muted mb-2"
+                className="block text-sm text-muted mb-1"
               >
                 Empresa
               </label>
@@ -166,14 +166,14 @@ export default function Contact() {
                 value={form.company}
                 onChange={handleChange}
                 placeholder="Tu empresa"
-                className="w-full bg-card border border-card-border rounded-lg px-4 py-3 text-white placeholder:text-muted/50 focus:outline-none focus:border-primary transition-colors"
+                className="w-full bg-card border border-card-border rounded-lg px-3 py-2 text-white placeholder:text-muted/50 focus:outline-none focus:border-primary transition-colors"
               />
             </div>
           </div>
 
           {/* Message */}
           <div>
-            <label htmlFor="message" className="block text-sm text-muted mb-2">
+            <label htmlFor="message" className="block text-sm text-muted mb-1">
               Mensaje
             </label>
             <textarea
@@ -182,9 +182,9 @@ export default function Contact() {
               value={form.message}
               onChange={handleChange}
               placeholder="Contanos sobre tu proyecto o desafío..."
-              rows={5}
+              rows={3}
               required
-              className="w-full bg-card border border-card-border rounded-lg px-4 py-3 text-white placeholder:text-muted/50 focus:outline-none focus:border-primary transition-colors resize-none"
+              className="w-full bg-card border border-card-border rounded-lg px-3 py-2 text-white placeholder:text-muted/50 focus:outline-none focus:border-primary transition-colors resize-none"
             />
           </div>
 
