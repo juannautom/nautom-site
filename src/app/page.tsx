@@ -16,34 +16,33 @@ export default function Home() {
   return (
     <>
       {/* ── 1. Hero ──────────────────────────────────────────────── */}
-      <section className="relative py-16 md:py-36 border-b border-card-border overflow-hidden">
+      <section className="relative min-h-screen flex items-center border-b border-card-border overflow-hidden">
         {/* Floating UI fragments — positioned absolute, hidden on mobile */}
         <div className="hidden md:block absolute inset-0 pointer-events-none">
           <FloatingUIFragments />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="max-w-3xl"
           >
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-mono font-bold leading-tight text-white">
-              Construimos productos propios.{" "}
-              <span className="text-primary">
-                Creamos soluciones a medida.
-              </span>
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-mono font-bold leading-tight text-foreground">
+              Tu equipo de{" "}
+              <br className="hidden md:block" />
+              tecnología{" "}
+              <span className="text-primary">AI-first.</span>
             </h1>
             <p className="mt-4 md:mt-6 text-muted text-base md:text-xl max-w-2xl">
-              Nautom es un estudio de tecnología AI-first. Desarrollamos
-              plataformas propias y proyectos a medida para empresas que
-              necesitan moverse rápido y con inteligencia.
+              Desarrollamos plataformas propias y proyectos a medida para
+              empresas que necesitan moverse rápido y con inteligencia.
             </p>
             <div className="mt-8 md:mt-10 flex flex-wrap gap-4">
               <Link
                 href="#products"
-                className="bg-primary hover:bg-primary-light text-white font-medium px-8 py-3 rounded-full transition-colors"
+                className="bg-primary hover:bg-accent-700 text-white font-medium px-8 py-3 rounded-full transition-colors"
               >
                 Ver productos
               </Link>
@@ -95,7 +94,7 @@ export default function Home() {
             />
             <Link
               href="/contact"
-              className="hidden md:block bg-gradient-to-r from-primary to-primary-light text-white font-medium px-8 py-3 rounded-full transition-opacity hover:opacity-90 text-center whitespace-nowrap"
+              className="hidden md:block bg-primary hover:bg-accent-700 text-white font-medium px-8 py-3 rounded-full transition-colors text-center whitespace-nowrap"
             >
               Contáctanos
             </Link>
@@ -198,7 +197,7 @@ export default function Home() {
             </p>
             <Link
               href="/contact"
-              className="inline-block bg-primary hover:bg-primary-light text-white font-medium px-10 py-4 rounded-full text-lg transition-colors"
+              className="inline-block bg-primary hover:bg-accent-700 text-white font-medium px-10 py-4 rounded-full text-lg transition-colors"
             >
               Empezar un proyecto
             </Link>

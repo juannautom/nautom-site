@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const footerLinks = [
@@ -13,15 +14,17 @@ export default function Footer() {
     <footer className="border-t border-card-border">
       <div className="max-w-7xl mx-auto px-6 py-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          {/* NAUTOM Logo Text */}
-          <div className="flex items-center gap-1 text-xl font-mono tracking-[0.3em] font-bold">
-            <span className="text-white">N</span>
-            <span className="text-white">A</span>
-            <span className="text-white">U</span>
-            <span className="text-white">T</span>
-            <span className="text-transparent" style={{ WebkitTextStroke: "1.5px #D4804A" }}>O</span>
-            <span className="text-white">M</span>
-          </div>
+          {/* NAUTOM Logo — official SVG wordmark */}
+          <Link href="/" aria-label="Nautom">
+            <Image
+              src="/logo-white-copper.svg"
+              alt="Nautom"
+              width={120}
+              height={14}
+              className="h-3.5 w-auto"
+              style={{ width: "auto" }}
+            />
+          </Link>
 
           {/* Links */}
           <div className="flex items-center gap-6">
