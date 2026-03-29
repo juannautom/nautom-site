@@ -57,3 +57,29 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* Floating animations for UI fragments — three depth layers */
+@keyframes float-fg {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes float-mg {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes float-bg {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+.animate-float-fg { animation: float-fg 3s ease-in-out infinite; }
+.animate-float-mg { animation: float-mg 4.5s ease-in-out infinite; }
+.animate-float-bg { animation: float-bg 7s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-fg,
+  .animate-float-mg,
+  .animate-float-bg {
+    animation: none;
+  }
+}
