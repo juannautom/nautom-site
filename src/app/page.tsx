@@ -10,24 +10,19 @@ import SectionTitle from "@/components/SectionTitle";
 import FAQAccordion from "@/components/FAQAccordion";
 import TeamSection from "@/components/TeamSection";
 import HowWeWork from "@/components/HowWeWork";
-import FloatingUIFragments from "@/components/FloatingUIFragments";
+// FloatingUIFragments preserved but no longer rendered in hero
+// import FloatingUIFragments from "@/components/FloatingUIFragments";
 
 export default function Home() {
   return (
     <>
       {/* ── 1. Hero ──────────────────────────────────────────────── */}
-      <section className="relative min-h-screen flex items-center border-b border-card-border overflow-hidden">
-        {/* Floating UI fragments — positioned absolute, hidden on mobile */}
-        <div className="hidden md:block absolute inset-0 pointer-events-none">
-          <FloatingUIFragments />
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
+      <section className="relative h-[calc(100vh-4rem)] flex items-center justify-center border-b border-card-border overflow-hidden">
+        <div className="relative z-10 max-w-4xl mx-auto px-6 w-full text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="max-w-3xl"
           >
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-mono font-bold leading-tight text-foreground">
               Tu equipo de{" "}
@@ -35,11 +30,11 @@ export default function Home() {
               tecnología{" "}
               <span className="text-primary">AI-first.</span>
             </h1>
-            <p className="mt-4 md:mt-6 text-muted text-base md:text-xl max-w-2xl">
+            <p className="mt-4 md:mt-6 text-muted text-base md:text-xl max-w-2xl mx-auto">
               Desarrollamos plataformas propias y proyectos a medida para
               empresas que necesitan moverse rápido y con inteligencia.
             </p>
-            <div className="mt-8 md:mt-10 flex flex-wrap gap-4">
+            <div className="mt-8 md:mt-10 flex flex-wrap justify-center gap-4">
               <Link
                 href="#products"
                 className="bg-primary hover:bg-accent-700 text-white font-medium px-8 py-3 rounded-full transition-colors"
@@ -55,10 +50,37 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
+
+        {/* Scroll hint */}
+        <motion.a
+          href="#clients"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 0.6 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 scroll-hint-bounce flex flex-col items-center gap-1"
+          aria-label="Scroll hacia abajo"
+        >
+          <span className="text-muted opacity-50 font-sans" style={{ fontSize: "11px" }}>
+            Explorar
+          </span>
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="text-muted opacity-50"
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </motion.a>
       </section>
 
       {/* ── 2. Client Logos ───────────────────────────────────────── */}
-      <section className="py-10 md:py-16 border-b border-card-border">
+      <section id="clients" className="py-10 md:py-16 border-b border-card-border">
         <div className="max-w-7xl mx-auto px-6">
           <motion.p
             initial={{ opacity: 0 }}

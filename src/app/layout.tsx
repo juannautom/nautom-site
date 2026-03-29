@@ -4,7 +4,8 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
-import GridOverlay from "@/components/GridOverlay";
+// GridOverlay removed — clean Navy Deep background
+// import GridOverlay from "@/components/GridOverlay";
 import FloatingCTA from "@/components/FloatingCTA";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -174,8 +175,7 @@ export default function RootLayout({
         />
       </head>
       <body suppressHydrationWarning className="bg-background text-foreground antialiased min-h-screen font-sans">
-        <GridOverlay />
-        <div className="relative" style={{ zIndex: 1 }}>
+        <div className="relative">
           <Navbar />
           <PageTransition>{children}</PageTransition>
           <Footer />
