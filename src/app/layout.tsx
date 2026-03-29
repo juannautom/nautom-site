@@ -24,19 +24,19 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://nautom.com"),
-  title: "Nautom — Agentes de IA y automatización para PyMEs argentinas",
+  title: "Nautom — Estudio de tecnología AI-first | Productos y proyectos a medida",
   description:
-    "Creamos agentes de inteligencia artificial, automatizamos procesos y desarrollamos aplicaciones internas a medida para PyMEs en Argentina. Agencia boutique de tecnología AI-first.",
+    "Estudio de tecnología que construye productos propios y proyectos a medida con enfoque AI-first. Gestión financiera, reservas, automatización y más para PyMEs argentinas.",
   keywords: [
+    "estudio tecnología Argentina",
+    "productos digitales PyMEs",
+    "proyectos a medida",
+    "AI-first development",
     "agentes de IA Argentina",
     "automatización PyMEs",
-    "inteligencia artificial empresas",
-    "agencia automatización Argentina",
-    "desarrollo aplicaciones internas",
-    "AI agents Argentina",
-    "automatización de procesos",
-    "sistemas de gestión PyMEs",
+    "gestión financiera PyMEs",
     "Nautom",
+    "Next.js Supabase",
   ],
   icons: {
     icon: [
@@ -46,9 +46,9 @@ export const metadata: Metadata = {
     apple: "/favicon-512.svg",
   },
   openGraph: {
-    title: "Nautom — Agentes de IA y automatización para PyMEs argentinas",
+    title: "Nautom — Estudio de tecnología AI-first",
     description:
-      "Creamos agentes de IA, automatizamos operaciones y desarrollamos herramientas internas a medida.",
+      "Construimos productos propios y proyectos a medida con enfoque AI-first para PyMEs argentinas.",
     url: "https://nautom.com",
     siteName: "Nautom",
     locale: "es_AR",
@@ -64,9 +64,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nautom — Agentes de IA y automatización para PyMEs argentinas",
+    title: "Nautom — Estudio de tecnología AI-first",
     description:
-      "Creamos agentes de IA, automatizamos operaciones y desarrollamos herramientas internas a medida.",
+      "Construimos productos propios y proyectos a medida con enfoque AI-first para PyMEs argentinas.",
     images: ["/og-image.png"],
   },
 };
@@ -88,7 +88,7 @@ export default function RootLayout({
               name: "Nautom",
               url: "https://nautom.com",
               description:
-                "Agencia boutique de inteligencia artificial y automatización para PyMEs argentinas. Creamos agentes de IA, automatizamos procesos y desarrollamos aplicaciones internas a medida.",
+                "Estudio de tecnología AI-first que construye productos propios y proyectos a medida para PyMEs argentinas. Gestión financiera, reservas, automatización y agentes de IA.",
               foundingDate: "2023",
               founders: [
                 { "@type": "Person", name: "Juan" },
@@ -112,12 +112,12 @@ export default function RootLayout({
                 "Railway",
               ],
               serviceType: [
+                "Productos digitales propios",
+                "Proyectos a medida",
                 "Agentes de inteligencia artificial",
                 "Automatización de procesos empresariales",
                 "Desarrollo de aplicaciones internas",
-                "Integraciones de sistemas",
-                "Facturación automática",
-                "MVPs y prototipos",
+                "Gestión financiera para PyMEs",
               ],
             }),
           }}
@@ -182,7 +182,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-background text-foreground antialiased min-h-screen font-sans">
+      <body suppressHydrationWarning className="bg-background text-foreground antialiased min-h-screen font-sans">
         <GridOverlay />
         <div className="relative" style={{ zIndex: 1 }}>
           <Navbar />

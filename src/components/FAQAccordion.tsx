@@ -31,7 +31,7 @@ export default function FAQAccordion({ items }: { items: FAQItem[] }) {
             onClick={() => toggle(i)}
             className="w-full flex items-center justify-between gap-4 p-6 text-left min-h-[48px]"
           >
-            <h3 className="font-mono font-semibold text-lg">{faq.q}</h3>
+            <h3 className="font-mono font-semibold text-lg text-white">{faq.q}</h3>
             <motion.div
               animate={{ rotate: openIndex === i ? 180 : 0 }}
               transition={{ duration: 0.2 }}
