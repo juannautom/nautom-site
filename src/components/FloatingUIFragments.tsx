@@ -124,16 +124,12 @@ const fragments: {
   delay: number;
   Component: React.ComponentType;
 }[] = [
-  // Foreground — dashboard, large, bleeds right edge
-  { id: "dashboard", rotate: -14, right: "-6%", top: "18%", opacity: 0.9, scale: 1, layer: "fg", delay: 0, Component: DashboardFragment },
-  // Midground — calendar, middle-right area
-  { id: "calendar", rotate: 8, right: "8%", top: "58%", opacity: 0.65, scale: 0.85, layer: "mg", delay: 0.2, Component: CalendarFragment },
-  // Midground — chart, closer to text
-  { id: "chart", rotate: -6, right: "28%", top: "10%", opacity: 0.6, scale: 0.8, layer: "mg", delay: 0.35, Component: ChartFragment },
-  // Background — search, small, top-right
-  { id: "search", rotate: 15, right: "2%", top: "2%", opacity: 0.35, scale: 0.75, layer: "bg", delay: 0.5, Component: SearchFragment },
-  // Background — second small silhouette near bottom-right
-  { id: "search2", rotate: -10, right: "22%", top: "72%", opacity: 0.3, scale: 0.7, layer: "bg", delay: 0.6, Component: SearchFragment },
+  // Background — search, top-right, partially clipped by top/right edge
+  { id: "search", rotate: -5, right: "-2%", top: "4%", opacity: 0.28, scale: 0.7, layer: "bg", delay: 0.5, Component: SearchFragment },
+  // Foreground — dashboard, large protagonist, center-right, bleeds right edge ~15-20%
+  { id: "dashboard", rotate: -15, right: "-8%", top: "35%", opacity: 0.85, scale: 1, layer: "fg", delay: 0, Component: DashboardFragment },
+  // Midground — calendar, bottom-right zone
+  { id: "calendar", rotate: 8, right: "5%", top: "72%", opacity: 0.5, scale: 0.85, layer: "mg", delay: 0.2, Component: CalendarFragment },
 ];
 
 const floatClass = { fg: "animate-float-fg", mg: "animate-float-mg", bg: "animate-float-bg" };

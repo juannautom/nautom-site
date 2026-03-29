@@ -63,7 +63,7 @@ export default function TestimonialCarousel() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -80 }}
                 transition={{ duration: 0.4 }}
-                className="rounded-2xl overflow-hidden bg-surface"
+                className="rounded-2xl overflow-hidden bg-primary-mid/10"
               >
                 {/* Mobile: compact single block */}
                 <div className="md:hidden p-5">
@@ -153,7 +153,7 @@ export default function TestimonialCarousel() {
 
           {/* Peek of next card (desktop only) */}
           <div
-            className="hidden md:block flex-shrink-0 rounded-2xl overflow-hidden opacity-30 bg-surface"
+            className="hidden md:block flex-shrink-0 rounded-2xl overflow-hidden opacity-30 bg-primary-mid/10"
             style={{ width: "15%" }}
           >
             <div className="p-6 h-full flex flex-col justify-end">
@@ -182,7 +182,7 @@ export default function TestimonialCarousel() {
       {/* Next button — circle on right edge */}
       <button
         onClick={next}
-        className="absolute right-0 md:right-[13%] top-1/2 -translate-y-1/2 translate-x-1/2 w-12 h-12 rounded-full bg-primary shadow-lg flex items-center justify-center hover:bg-primary-light transition-colors z-10"
+        className="absolute right-0 md:right-[13%] top-1/2 -translate-y-1/2 translate-x-1/2 w-12 h-12 rounded-full bg-primary shadow-lg flex items-center justify-center hover:bg-accent-700 transition-colors z-10"
         aria-label="Next testimonial"
       >
         <svg

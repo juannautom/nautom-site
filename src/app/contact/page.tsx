@@ -55,7 +55,7 @@ export default function Contact() {
         >
           <Link
             href="/"
-            className="w-10 h-10 rounded-full bg-primary flex items-center justify-center hover:bg-primary-light transition-colors inline-flex"
+            className="w-10 h-10 rounded-full bg-primary flex items-center justify-center hover:bg-accent-700 transition-colors inline-flex"
             aria-label="Volver"
           >
             <svg
@@ -193,7 +193,7 @@ export default function Contact() {
             <button
               type="submit"
               disabled={status === "sending"}
-              className="bg-primary text-white font-medium px-10 py-3 rounded-full hover:bg-primary-light transition-colors disabled:opacity-50"
+              className="bg-primary text-white font-medium px-10 py-3 rounded-full hover:bg-accent-700 transition-colors disabled:opacity-50"
             >
               {status === "sending" ? "Enviando..." : "Enviar mensaje"}
             </button>

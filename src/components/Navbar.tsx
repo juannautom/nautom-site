@@ -40,7 +40,7 @@ export default function Navbar() {
           ))}
           <Link
             href="/contact"
-            className="bg-primary hover:bg-primary-light text-white text-sm font-medium px-5 py-2 rounded-full transition-colors"
+            className="bg-primary hover:bg-accent-700 text-white text-sm font-medium px-5 py-2 rounded-full transition-colors"
           >
             Empezar
           </Link>

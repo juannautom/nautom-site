@@ -206,8 +206,8 @@ export default function CaseTabs() {
                   key={i}
                   className="flex items-start gap-3 p-4 rounded-xl border border-card-border bg-card"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center flex-shrink-0">
-                    <h.icon className="w-4 h-4 text-purple-400" />
+                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <h.icon className="w-4 h-4 text-primary" />
                   </div>
                   <p className="text-muted text-sm leading-relaxed">{h.text}</p>
                 </div>
