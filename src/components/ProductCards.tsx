@@ -209,12 +209,12 @@ function PadelAppMockup() {
   );
 }
 
-/** Nautom Suites — Airbnb-style property marketplace (light theme) */
+/** Nautom Suites — Airbnb-style property marketplace with real photos (light theme) */
 function SuitesMockup() {
   const properties = [
-    { name: "Centro Lofts II", zone: "Centro", price: "$52.000", info: "1 dorm. · 1 baño · hasta 2 huésp.", tags: ["WiFi", "A/C", "+1"], gradient: "from-[#D4A574] to-[#8B7355]" },
-    { name: "Vista Park I", zone: "Nueva Córdoba", price: "$55.000", info: "2 dorm. · 1 baño · hasta 4 huésp.", tags: ["WiFi", "Smart TV", "+2"], gradient: "from-[#7B8FA1] to-[#4A5568]" },
-    { name: "Centro Lofts I", zone: "Centro", price: "$48.000", info: "1 dorm. · 1 baño · hasta 2 huésp.", tags: ["WiFi", "A/C"], gradient: "from-[#C4956A] to-[#B8A590]" },
+    { name: "Centro Lofts I", zone: "Centro", price: "$48.000", info: "1 dorm. · 1 baño · hasta 2 huésp.", img: "/images/suites/a1.webp" },
+    { name: "Vista Park I", zone: "Nueva Córdoba", price: "$55.000", info: "2 dorm. · 1 baño · hasta 4 huésp.", img: "/images/suites/a2.webp" },
+    { name: "Centro Lofts II", zone: "Centro", price: "$52.000", info: "1 dorm. · 1 baño · hasta 2 huésp.", img: "/images/suites/a3.webp" },
   ];
 
   return (
@@ -223,18 +223,6 @@ function SuitesMockup() {
       <div className="absolute inset-0 bg-[#F8FAFC]" />
 
       <div className="relative flex flex-col h-full">
-        {/* Browser bar */}
-        <div className="flex items-center gap-1 px-2 py-1 bg-[#e8e8ec] border-b border-black/5">
-          <div className="flex gap-0.5">
-            <div className="w-1 h-1 rounded-full bg-red-400/70" />
-            <div className="w-1 h-1 rounded-full bg-yellow-400/70" />
-            <div className="w-1 h-1 rounded-full bg-green-400/70" />
-          </div>
-          <div className="flex-1 mx-1 bg-white rounded px-1.5 py-0.5">
-            <span className="text-[4.5px] text-[#64748B]">suites.nautom.com</span>
-          </div>
-        </div>
-
         {/* Navbar — dark navy */}
         <div className="flex items-center justify-between px-3 py-1.5 bg-[#0C1B33]">
           <span className="text-[7px] font-bold text-white tracking-wide">Nautom</span>
@@ -246,57 +234,42 @@ function SuitesMockup() {
         {/* Search bar — Airbnb-style horizontal filters */}
         <div className="px-2 pt-2 pb-1.5">
           <div className="flex items-center bg-white rounded-md border border-[#E2E8F0] overflow-hidden">
-            <div className="flex-1 flex items-center divide-x divide-[#E2E8F0]">
-              <div className="px-1.5 py-1">
-                <span className="text-[4px] text-[#64748B] block leading-none">Complejo</span>
-                <span className="text-[4.5px] text-[#1E293B] font-medium block mt-0.5 leading-none">Todos</span>
-              </div>
-              <div className="px-1.5 py-1">
-                <span className="text-[4px] text-[#64748B] block leading-none">Llegada</span>
-                <span className="text-[4.5px] text-[#1E293B]/40 block mt-0.5 leading-none">Fecha</span>
-              </div>
-              <div className="px-1.5 py-1">
-                <span className="text-[4px] text-[#64748B] block leading-none">Salida</span>
-                <span className="text-[4.5px] text-[#1E293B]/40 block mt-0.5 leading-none">Fecha</span>
-              </div>
-              <div className="px-1.5 py-1">
-                <span className="text-[4px] text-[#64748B] block leading-none">Huéspedes</span>
-                <span className="text-[4.5px] text-[#1E293B]/40 block mt-0.5 leading-none">2</span>
-              </div>
+            <div className="flex-1 flex items-center">
+              <span className="text-[4.5px] text-[#64748B] px-2">Complejo</span>
+              <span className="text-[4.5px] text-[#64748B]/40 px-1.5">·</span>
+              <span className="text-[4.5px] text-[#64748B] px-1.5">Llegada</span>
+              <span className="text-[4.5px] text-[#64748B]/40 px-1.5">·</span>
+              <span className="text-[4.5px] text-[#64748B] px-1.5">Salida</span>
+              <span className="text-[4.5px] text-[#64748B]/40 px-1.5">·</span>
+              <span className="text-[4.5px] text-[#64748B] px-1.5">Huéspedes</span>
             </div>
-            <div className="bg-[#1E293B] px-2 py-1.5 mr-0.5 rounded">
+            <div className="bg-[#1E293B] px-2 py-1 mr-0.5 rounded">
               <span className="text-[4.5px] text-white font-medium">Buscar</span>
             </div>
           </div>
         </div>
 
-        {/* Property cards grid — marketplace style */}
+        {/* Property cards grid — marketplace style with real photos */}
         <div className="flex-1 px-2 pb-1.5 overflow-hidden">
           <div className="grid grid-cols-3 gap-1.5 h-full">
-            {properties.map((prop, i) => (
+            {properties.map((prop) => (
               <div
                 key={prop.name}
-                className="rounded-lg overflow-hidden flex flex-col bg-white shadow-sm"
-                style={{ opacity: i === 2 ? 0.7 : 1 }}
+                className="rounded-lg overflow-hidden flex flex-col bg-white border border-[#E2E8F0]"
               >
-                {/* Photo area — warm gradients evoking real interiors */}
-                <div className={`h-12 bg-gradient-to-br ${prop.gradient} relative`}>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                  {/* Subtle window/furniture shapes to suggest interior photo */}
-                  <div className="absolute bottom-1 left-1 w-3 h-2 rounded-sm bg-white/10" />
-                  <div className="absolute top-1.5 right-1 w-1.5 h-1.5 rounded-full bg-white/8" />
+                {/* Real photo */}
+                <div className="relative" style={{ aspectRatio: "4/3" }}>
+                  <img
+                    src={prop.img}
+                    alt={prop.name}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
                 </div>
                 {/* Card info */}
                 <div className="p-1.5 flex-1 flex flex-col gap-[2px]">
                   <span className="text-[5.5px] font-bold text-[#1E293B] leading-tight">{prop.name}</span>
                   <span className="text-[4px] text-[#64748B] leading-tight">{prop.zone}</span>
                   <span className="text-[4px] text-[#64748B] leading-tight">{prop.info}</span>
-                  {/* Amenity tags */}
-                  <div className="flex gap-0.5 mt-[1px]">
-                    {prop.tags.map((tag) => (
-                      <span key={tag} className="text-[3.5px] text-[#64748B] bg-[#F1F5F9] rounded px-0.5 py-[0.5px] leading-tight">{tag}</span>
-                    ))}
-                  </div>
                   <span className="text-[6px] font-bold text-[#D4804A] mt-auto leading-tight">{prop.price} <span className="text-[4px] font-normal text-[#64748B]">/ noche</span></span>
                 </div>
               </div>
