@@ -209,85 +209,99 @@ function PadelAppMockup() {
   );
 }
 
-/** Nautom Suites — property listing with horizontal card carousel */
+/** Nautom Suites — Airbnb-style property marketplace (light theme) */
 function SuitesMockup() {
   const properties = [
-    { name: "CENTRO LOFTS II", price: "Desde $52.000", info: "2 dorm. | 1 baño", gradient: "from-amber-800/60 via-stone-600/50 to-amber-900/60" },
-    { name: "VISTA PARK I", price: "Desde $68.000", info: "3 dorm. | 2 baños", gradient: "from-slate-500/50 via-stone-400/40 to-slate-600/50" },
-    { name: "CENTRO LOFTS I", price: "Desde $45.000", info: "1 dorm. | 1 baño", gradient: "from-stone-500/50 via-amber-700/40 to-stone-600/50" },
-    { name: "VISTA PARK II", price: "Desde $74.000", info: "3 dorm. | 2 baños", gradient: "from-slate-600/50 via-zinc-500/40 to-slate-500/50" },
+    { name: "Centro Lofts II", zone: "Centro", price: "$52.000", info: "1 dorm. · 1 baño · hasta 2 huésp.", tags: ["WiFi", "A/C", "+1"], gradient: "from-[#D4A574] to-[#8B7355]" },
+    { name: "Vista Park I", zone: "Nueva Córdoba", price: "$55.000", info: "2 dorm. · 1 baño · hasta 4 huésp.", tags: ["WiFi", "Smart TV", "+2"], gradient: "from-[#7B8FA1] to-[#4A5568]" },
+    { name: "Centro Lofts I", zone: "Centro", price: "$48.000", info: "1 dorm. · 1 baño · hasta 2 huésp.", tags: ["WiFi", "A/C"], gradient: "from-[#C4956A] to-[#B8A590]" },
   ];
 
   return (
     <div className="absolute inset-0 top-8 overflow-hidden">
-      {/* Dark background */}
-      <div className="absolute inset-0 bg-[#1a1a2e]" />
+      {/* Light background */}
+      <div className="absolute inset-0 bg-[#F8FAFC]" />
 
       <div className="relative flex flex-col h-full">
         {/* Browser bar */}
-        <div className="flex items-center gap-1 px-2 py-1 bg-[#2a2a3e] border-b border-white/5">
+        <div className="flex items-center gap-1 px-2 py-1 bg-[#e8e8ec] border-b border-black/5">
           <div className="flex gap-0.5">
             <div className="w-1 h-1 rounded-full bg-red-400/70" />
             <div className="w-1 h-1 rounded-full bg-yellow-400/70" />
             <div className="w-1 h-1 rounded-full bg-green-400/70" />
           </div>
-          <div className="flex-1 mx-1 bg-[#1a1a2e] rounded px-1.5 py-0.5">
-            <span className="text-[4.5px] text-white/40">suites.nautom.com</span>
+          <div className="flex-1 mx-1 bg-white rounded px-1.5 py-0.5">
+            <span className="text-[4.5px] text-[#64748B]">suites.nautom.com</span>
           </div>
         </div>
 
-        {/* Navbar */}
-        <div className="flex items-center justify-between px-3 py-1.5 bg-[#1a1a2e] border-b border-white/5">
+        {/* Navbar — dark navy */}
+        <div className="flex items-center justify-between px-3 py-1.5 bg-[#0C1B33]">
           <span className="text-[7px] font-bold text-white tracking-wide">Nautom</span>
-          <div className="bg-[#D4854A] rounded px-2 py-0.5">
+          <div className="bg-[#D4804A] rounded px-2 py-0.5">
             <span className="text-[5px] text-white font-medium">Ver disponibilidad</span>
           </div>
         </div>
 
-        {/* Filter tabs */}
-        <div className="flex items-center gap-3 px-3 pt-2 pb-1">
-          <div className="flex flex-col items-center">
-            <span className="text-[6px] text-white font-medium">Todos</span>
-            <div className="w-full h-[1.5px] bg-[#D4854A] rounded-full mt-0.5" />
+        {/* Search bar — Airbnb-style horizontal filters */}
+        <div className="px-2 pt-2 pb-1.5">
+          <div className="flex items-center bg-white rounded-md border border-[#E2E8F0] overflow-hidden">
+            <div className="flex-1 flex items-center divide-x divide-[#E2E8F0]">
+              <div className="px-1.5 py-1">
+                <span className="text-[4px] text-[#64748B] block leading-none">Complejo</span>
+                <span className="text-[4.5px] text-[#1E293B] font-medium block mt-0.5 leading-none">Todos</span>
+              </div>
+              <div className="px-1.5 py-1">
+                <span className="text-[4px] text-[#64748B] block leading-none">Llegada</span>
+                <span className="text-[4.5px] text-[#1E293B]/40 block mt-0.5 leading-none">Fecha</span>
+              </div>
+              <div className="px-1.5 py-1">
+                <span className="text-[4px] text-[#64748B] block leading-none">Salida</span>
+                <span className="text-[4.5px] text-[#1E293B]/40 block mt-0.5 leading-none">Fecha</span>
+              </div>
+              <div className="px-1.5 py-1">
+                <span className="text-[4px] text-[#64748B] block leading-none">Huéspedes</span>
+                <span className="text-[4.5px] text-[#1E293B]/40 block mt-0.5 leading-none">2</span>
+              </div>
+            </div>
+            <div className="bg-[#1E293B] px-2 py-1.5 mr-0.5 rounded">
+              <span className="text-[4.5px] text-white font-medium">Buscar</span>
+            </div>
           </div>
-          <span className="text-[6px] text-white/40">Centro Lofts</span>
-          <span className="text-[6px] text-white/40">Vista Park</span>
         </div>
 
-        {/* Property cards carousel */}
-        <div className="flex-1 px-1 pt-1 pb-2">
-          <div className="flex gap-1.5 h-full" style={{ marginLeft: "-8px", marginRight: "-8px" }}>
+        {/* Property cards grid — marketplace style */}
+        <div className="flex-1 px-2 pb-1.5 overflow-hidden">
+          <div className="grid grid-cols-3 gap-1.5 h-full">
             {properties.map((prop, i) => (
               <div
                 key={prop.name}
-                className="flex-shrink-0 rounded-lg overflow-hidden flex flex-col"
-                style={{
-                  width: "38%",
-                  opacity: i === 0 || i === 3 ? 0.6 : 1,
-                  marginLeft: i === 0 ? "4px" : undefined,
-                }}
+                className="rounded-lg overflow-hidden flex flex-col bg-white shadow-sm"
+                style={{ opacity: i === 2 ? 0.7 : 1 }}
               >
-                {/* Photo area — warm architectural gradients */}
-                <div className={`h-14 bg-gradient-to-br ${prop.gradient} relative`}>
-                  {/* Subtle texture overlays */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-transparent to-white/5" />
+                {/* Photo area — warm gradients evoking real interiors */}
+                <div className={`h-12 bg-gradient-to-br ${prop.gradient} relative`}>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                  {/* Subtle window/furniture shapes to suggest interior photo */}
+                  <div className="absolute bottom-1 left-1 w-3 h-2 rounded-sm bg-white/10" />
+                  <div className="absolute top-1.5 right-1 w-1.5 h-1.5 rounded-full bg-white/8" />
                 </div>
                 {/* Card info */}
-                <div className="bg-[#2a2a3e] p-1.5 flex-1 flex flex-col gap-0.5">
-                  <span className="text-[5.5px] font-bold text-white tracking-wider">{prop.name}</span>
-                  <span className="text-[6.5px] font-bold text-[#D4854A]">{prop.price}</span>
-                  <span className="text-[4.5px] text-white/40">{prop.info}</span>
+                <div className="p-1.5 flex-1 flex flex-col gap-[2px]">
+                  <span className="text-[5.5px] font-bold text-[#1E293B] leading-tight">{prop.name}</span>
+                  <span className="text-[4px] text-[#64748B] leading-tight">{prop.zone}</span>
+                  <span className="text-[4px] text-[#64748B] leading-tight">{prop.info}</span>
+                  {/* Amenity tags */}
+                  <div className="flex gap-0.5 mt-[1px]">
+                    {prop.tags.map((tag) => (
+                      <span key={tag} className="text-[3.5px] text-[#64748B] bg-[#F1F5F9] rounded px-0.5 py-[0.5px] leading-tight">{tag}</span>
+                    ))}
+                  </div>
+                  <span className="text-[6px] font-bold text-[#D4804A] mt-auto leading-tight">{prop.price} <span className="text-[4px] font-normal text-[#64748B]">/ noche</span></span>
                 </div>
               </div>
             ))}
           </div>
-        </div>
-
-        {/* Footer */}
-        <div className="flex items-center justify-between px-3 py-1 bg-[#1a1a2e] border-t border-white/5">
-          <span className="text-[5px] text-white/30 font-medium">Nautom</span>
-          <span className="text-[4.5px] text-white/20">Córdoba, Argentina</span>
         </div>
       </div>
     </div>
