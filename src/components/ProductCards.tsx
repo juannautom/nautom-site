@@ -92,89 +92,118 @@ function GestionFinancieraMockup() {
   );
 }
 
-/** The Padel App — dark calendar with green neon slots */
+/** Nautom Padel — timeline view with court rows and orange accent */
 function PadelAppMockup() {
-  const days = ["LUN", "MAR", "MIÉ", "JUE", "VIE", "SÁB", "DOM"];
-  const hours = ["09:00", "10:30", "12:00", "13:30", "15:00", "16:30", "18:00"];
+  const days = [
+    { day: "Jue", num: 2, selected: true },
+    { day: "Vie", num: 3 },
+    { day: "Sáb", num: 4 },
+    { day: "Dom", num: 5, highlight: true },
+    { day: "Lun", num: 6 },
+    { day: "Mar", num: 7 },
+  ];
 
-  // Availability grid: 1 = available, 0 = taken, 2 = selected
-  const grid = [
-    [1, 0, 1, 1, 0, 1, 1],
-    [0, 1, 0, 1, 1, 0, 1],
-    [1, 1, 1, 0, 1, 1, 0],
-    [0, 0, 1, 1, 0, 1, 1],
-    [1, 1, 0, 2, 1, 0, 1],
-    [1, 0, 1, 1, 1, 1, 0],
-    [0, 1, 1, 0, 0, 1, 1],
+  const hours = ["08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"];
+
+  // Court timeline: 0 = free, 1 = occupied, 2 = your reservation
+  const courts = [
+    { name: "Cancha 1", price: "$90.000", slots: [0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 2, 2] },
+    { name: "Cancha 2", price: "$90.000", slots: [1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0] },
+    { name: "Cancha 3", price: "$90.000", slots: [0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0] },
+    { name: "Cancha 4", price: "$90.000", slots: [0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1] },
   ];
 
   return (
-    <div className="absolute inset-0 top-8 bg-gradient-to-br from-gray-950 to-gray-900 p-3 flex flex-col gap-2 overflow-hidden">
+    <div className="absolute inset-0 top-8 bg-[#0C1B33] p-2 flex flex-col gap-1.5 overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-1.5">
-          <div className="w-4 h-4 rounded-full bg-[#00FF7F]/20 flex items-center justify-center">
-            <span className="text-[6px] text-[#00FF7F] font-bold">P</span>
-          </div>
-          <span className="text-[7px] font-bold text-white">Encontrá tu cancha</span>
-        </div>
+        <span className="text-[7px] font-bold text-[#D4804A] italic">Nautom Padel</span>
         <div className="flex gap-1">
-          <span className="text-[5px] px-1.5 py-0.5 rounded bg-[#00FF7F]/10 text-[#00FF7F] border border-[#00FF7F]/20">
-            Buenos Aires
+          <span className="text-[5px] px-1.5 py-0.5 rounded bg-white/5 text-[#94A3B8] border border-white/10">
+            Iniciar sesión
           </span>
-          <span className="text-[5px] px-1.5 py-0.5 rounded bg-white/5 text-gray-400 border border-white/10">
-            90 min
+          <span className="text-[5px] px-1.5 py-0.5 rounded bg-[#D4804A] text-white font-medium">
+            Registrarse
           </span>
         </div>
       </div>
 
-      {/* Calendar grid */}
-      <div className="flex-1 bg-gray-900/50 rounded-lg border border-white/5 p-1.5 overflow-hidden">
-        {/* Day headers */}
-        <div className="grid grid-cols-8 gap-[2px] mb-1">
-          <div /> {/* empty corner */}
-          {days.map((d) => (
-            <span key={d} className="text-[5px] text-gray-500 text-center font-medium">
-              {d}
-            </span>
-          ))}
-        </div>
-
-        {/* Hour rows */}
-        {hours.map((hour, hi) => (
-          <div key={hour} className="grid grid-cols-8 gap-[2px] mb-[2px]">
-            <span className="text-[4px] text-gray-600 flex items-center">{hour}</span>
-            {grid[hi].map((slot, di) => (
-              <div
-                key={di}
-                className={`h-3 rounded-sm transition-all ${
-                  slot === 2
-                    ? "bg-[#00FF7F] shadow-[0_0_6px_rgba(0,255,127,0.4)]"
-                    : slot === 1
-                    ? "bg-[#00FF7F]/15 border border-[#00FF7F]/20"
-                    : "bg-white/5 border border-white/5"
-                }`}
-              />
-            ))}
+      {/* Day selector pills */}
+      <div className="flex gap-1">
+        {days.map((d) => (
+          <div
+            key={d.num}
+            className={`flex flex-col items-center px-1.5 py-0.5 rounded ${
+              d.selected
+                ? "bg-[#D4804A]"
+                : d.highlight
+                ? "bg-[#E8994A]/20"
+                : "bg-white/5"
+            }`}
+          >
+            <span className={`text-[4px] ${d.selected || d.highlight ? "text-white" : "text-[#94A3B8]"}`}>{d.day}</span>
+            <span className={`text-[6px] font-bold ${d.selected ? "text-white" : d.highlight ? "text-[#E8994A]" : "text-white"}`}>{d.num}</span>
           </div>
         ))}
       </div>
 
-      {/* Bottom bar */}
+      {/* View tabs + duration */}
       <div className="flex items-center justify-between">
-        <div className="flex gap-2">
-          <div className="flex items-center gap-1">
-            <div className="w-2 h-2 rounded-sm bg-[#00FF7F]/15 border border-[#00FF7F]/20" />
-            <span className="text-[5px] text-gray-500">Disponible</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <div className="w-2 h-2 rounded-sm bg-white/5" />
-            <span className="text-[5px] text-gray-500">Ocupado</span>
-          </div>
+        <div className="flex gap-1">
+          <span className="text-[5px] text-[#94A3B8] px-1 py-0.5 rounded bg-white/5">Grilla</span>
+          <span className="text-[5px] text-white px-1 py-0.5 rounded bg-[#D4804A]/30 border border-[#D4804A]/40 font-medium">Timeline</span>
         </div>
-        <span className="text-[6px] px-2 py-0.5 rounded-full bg-[#00FF7F] text-gray-900 font-bold">
-          Reservar
-        </span>
+        <div className="flex gap-0.5">
+          <span className="text-[5px] text-white px-1 py-0.5 rounded bg-[#D4804A] font-medium">90&apos;</span>
+          <span className="text-[5px] text-[#94A3B8] px-1 py-0.5 rounded bg-white/5">120&apos;</span>
+        </div>
+      </div>
+
+      {/* Timeline grid */}
+      <div className="flex-1 bg-[#0C1B33]/50 rounded border border-white/5 p-1 overflow-hidden">
+        {/* Hour headers */}
+        <div className="flex mb-0.5">
+          <div className="w-12 flex-shrink-0" />
+          {hours.map((h) => (
+            <span key={h} className="flex-1 text-[3.5px] text-[#94A3B8] text-center">{h}:00</span>
+          ))}
+        </div>
+
+        {/* Court rows */}
+        {courts.map((court) => (
+          <div key={court.name} className="flex items-center mb-[2px]">
+            <div className="w-12 flex-shrink-0 pr-1">
+              <span className="text-[4.5px] text-white block leading-tight">{court.name}</span>
+              <span className="text-[3.5px] text-[#94A3B8]">{court.price}</span>
+            </div>
+            <div className="flex-1 flex gap-[1px]">
+              {court.slots.map((slot, si) => (
+                <div
+                  key={si}
+                  className={`flex-1 h-3.5 rounded-sm ${
+                    slot === 2
+                      ? "bg-[#D4804A]/20 border border-[#D4804A]"
+                      : slot === 1
+                      ? "bg-[rgba(148,163,184,0.25)]"
+                      : "bg-white/5"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Legend */}
+      <div className="flex gap-3">
+        <div className="flex items-center gap-1">
+          <div className="w-2 h-2 rounded-sm bg-[rgba(148,163,184,0.25)]" />
+          <span className="text-[5px] text-[#94A3B8]">No disponible</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <div className="w-2 h-2 rounded-sm bg-[#D4804A]/20 border border-[#D4804A]" />
+          <span className="text-[5px] text-[#94A3B8]">Tu reserva</span>
+        </div>
       </div>
     </div>
   );
@@ -285,9 +314,9 @@ const products = [
     description:
       "Plataforma para buscar clubes, comparar disponibilidad y reservar canchas de padel. Calendario semanal, filtros por provincia, duración y franja horaria.",
     differentiators: ["Reserva instantánea", "Calendario semanal", "Filtros inteligentes"],
-    url: "https://the-padel.app",
-    cobranded: "The Padel App",
-    badgeColor: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
+    url: "https://padel.nautom.com",
+    cobranded: "Nautom Padel",
+    badgeColor: "bg-[#D4804A]/10 text-[#D4804A] border-[#D4804A]/20",
     Mockup: PadelAppMockup,
   },
   {
