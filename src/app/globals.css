@@ -58,3 +58,34 @@
     scroll-behavior: auto;
   }
 }
+
+/* ──────────────────────────────────────────────────────────────────
+   Logo marquee (PR-1 proof bar) — single row, CSS-only so the logos
+   stay in the server-rendered HTML (no JS, capa-LLM §3). Two identical
+   copies of the track translate by -50% for a seamless loop.
+   ────────────────────────────────────────────────────────────────── */
+@keyframes nautom-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: nautom-marquee var(--marquee-duration, 48s) linear infinite;
+}
+
+/* Pause when the reader hovers the strip. */
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* No motion: hold the row still (the logos remain visible and readable). */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+    transform: none;
+  }
+}

@@ -55,11 +55,13 @@ infra que después alimenta `llms.txt` (PR-5) y la que demuestra la tesis del si
 - **Dep nueva:** `gray-matter`.
 
 ### Decisiones de PR-1 (registradas también en spec §5.5)
-- **Barra de logos:** 7 logos reales de `public/images/logos/` (keepsmiling, visible,
-  inspira, ivess, shades-by-shan, integra, peerforum). Los SVG están en blanco (tema
-  viejo) → se aplanan a silueta tinta sobre papel con `filter:brightness(0)` + opacidad.
-  `ypf-gas2`/`avenida+`/`Impacto Positivo` quedaron afuera (sin confirmar que sean
-  clientes de esta barra) — **flag para review**.
+- **Barra de logos:** lista/orden definidos por Juancho — 9 logos en `content/es/home/proof.md`
+  (Peerforum, IVESS El Jumillano, Altis Viajes, Integra Groupe, Impacto Positivo, Quanta,
+  YPF Gas, KeepSmiling, Lecker Argentina). Kova se eliminó. **Display: marquee de una sola
+  fila** (CSS puro, `nautom-marquee` en `globals.css`; pausa en hover; respeta
+  `prefers-reduced-motion`; logos en el HTML SSR). Todos se aplanan a silueta tinta con
+  `filter:brightness(0)`. Sizing: altura **definida** (`h-8`/`h-9`) — los SVG no traen
+  width/height, con `max-h` solos quedan sin tamaño. `scale` por logo = ajuste óptico.
 - **Teasers anonimizados por concepto**, sin nombre de cliente. Caso A lidera con la
   tesis (no hay dato de escala medido → no se inventa). Caso B lidera con datos de
   escala de §4 — **flag para review**: confirmar que corresponden a esa distribuidora.
