@@ -1,0 +1,16 @@
+# Nautom
+
+> El conocimiento de tu empresa no debería vivir en la cabeza de unas pocas personas. Construimos software que se hace cargo de las reglas del negocio y las hace cumplir solo.
+
+## Páginas
+
+- [Inicio](https://nautom.com/): Las reglas de tu negocio dejan de estar en la cabeza de alguien y pasan a estar en el software. La operación no se frena cuando esa persona no está.
+- [Enfoque](https://nautom.com/enfoque): El conocimiento de tu empresa no debería vivir en la cabeza de unas pocas personas. Construimos software que se hace cargo de las reglas del negocio y las hace cumplir solo.
+- [Trabajo](https://nautom.com/trabajo): Dos casos en profundidad sobre cómo pensamos el software, y una muestra de proyectos en los que el conocimiento ya vive en el sistema.
+- [Nosotros](https://nautom.com/nosotros): Nautom es un estudio de software AI-first. El contexto de cada proyecto vive en el sistema, no en la cabeza de quien lo armó — la misma idea que vendemos, aplicada a nosotros.
+- [Contacto](https://nautom.com/contacto): Vemos juntos qué puede vivir en el sistema, para que tu negocio no dependa de que una persona esté.
+
+## Casos
+
+- [Dos verdades](https://nautom.com/trabajo/dos-verdades): La operación y la contabilidad son dos verdades distintas. El software que las mezcla corrompe las dos.
+- [Tener todo a la vista](https://nautom.com/trabajo/tener-todo-a-la-vista): Las mejores decisiones no las toma quien más recuerda. Las toma quien tiene todo a la vista.

@@ -10,6 +10,7 @@ const trabajo = getTrabajoIndex();
 export const metadata: Metadata = {
   title: "Trabajo — Nautom",
   description: trabajo.intro,
+  alternates: { canonical: "/trabajo" },
 };
 
 export default function TrabajoPage() {

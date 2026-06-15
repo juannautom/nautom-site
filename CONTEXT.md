@@ -14,7 +14,9 @@ Next.js 16 (App Router, Turbopack) · React 19 · Tailwind v4 (tokens en `@theme
 - [x] **PR-2 — Caso A + Caso B**. Dos páginas de caso profundo sobre `/trabajo/<slug>`.
 - [x] **PR-3 — Enfoque + Nosotros + Trabajo** (este). Ensayo + modelo operativo + índice de Trabajo.
 - [x] **PR-4 — Sesión del agente** (en Caso A). Widget interactivo de validación en vivo.
-- [ ] PR-5 — Capa-LLM/SEO: robots.txt, llms.txt, JSON-LD, canonicals, redirects 301.
+- [x] **PR-5 — Capa-LLM/SEO** (esta). robots.txt (bots de IA), llms.txt/llms-full.txt
+  autogenerados del markdown, JSON-LD (Organization/CreativeWork×2/FAQPage), canonicals
+  SSR y mapa de 301. Última fila antes del go-live (#13 lo mergea Juancho aparte).
 
 ## Sistema visual (PR-0) — locked, ver spec §5.2
 
@@ -137,6 +139,55 @@ atención, así que va donde el lector ya está enganchado.
   documentada (§4 + §5.1), que está completa; no se reescribió una lógica existente,
   se reconstruyó una ausente. Si el asset aparece, conviene reconciliar.
 
+## Capa-LLM / SEO (PR-5)
+
+La fila que hace el site legible y citable por LLMs, más los redirects. Todo va en el
+HTML **server-rendered** (§3), nada inyectado por JS.
+
+- **`robots.txt`:** `src/app/robots.ts` (`MetadataRoute.Robots`). Permite los bots de
+  IA explícitamente —**ClaudeBot, GPTBot, PerplexityBot**— además del `*`, y apunta a
+  `/sitemap.xml`. Nombrarlos hace legible la intención y chequeable el invariante.
+- **`llms.txt` + `llms-full.txt` autogenerados del markdown:** se sirven desde
+  `public/` (accesibles en `/llms.txt` y `/llms-full.txt`). **No se hardcodean:** el
+  builder `scripts/lib/llms-content.mjs` lee el mismo markdown que renderizan las
+  páginas (gray-matter, idéntico precedente que `check-ssr-presence.mjs`) y arma los
+  dos archivos de forma **determinística** (sin fechas). `npm run llms:gen` los escribe;
+  `npm run check:llms` regenera en memoria y **diffea byte a byte** contra lo commiteado
+  → drift = fallo. Sabe fallar de dos formas: edición a mano de `public/llms.txt`
+  (hardcode) o cambio de contenido sin regenerar. `llms.txt` = índice curado
+  (forma llmstxt.org: H1 + blockquote + listas de links con una línea por página);
+  `llms-full.txt` = el site entero como un markdown (páginas + casos completos + FAQ).
+- **JSON-LD** (`src/lib/jsonld.ts` + `<JsonLd>` server component, escapa `<`):
+  `Organization` global (en `layout.tsx`), un `CreativeWork` por caso (en
+  `/trabajo/[slug]`), y `FAQPage` en la Home. La FAQ vive como contenido versionado
+  (`content/es/faq/index.md`, loader `src/lib/faq.ts`) — copy v1 en idioma comprador
+  (§5.1), respuestas apoyadas en copy ya presente del site, **sin métricas inventadas**
+  (§4). No hay página `/faq` visible (decisión registrada en el .md).
+- **Canonicals:** `metadata.alternates.canonical` por ruta (Home, Enfoque, Nosotros,
+  Trabajo, Contacto y cada caso) → Next los renderiza en el `<head>` server-side. Next
+  normaliza el canonical de `/` al origen pelado (`https://nautom.com`, sin barra).
+- **Mapa de 301** (`src/lib/redirects.ts`, fuente única): `/about`→`/nosotros` y
+  `/contact`→`/contacto`. **Inventario cruzado de dos fuentes** que coinciden: el
+  sitemap viejo (`main:src/app/sitemap.ts` listaba `/`, `/about`, `/contact`) y las
+  rutas reales viejas (`main:src/app/**` = `/`, `/about`, `/contact` + el endpoint
+  `/api/contact`, no navegable). `/` existe en viejo y nuevo → no se redirige. Se usa
+  **`statusCode: 301`** explícito en `next.config.ts` (no `permanent: true`, que
+  emitiría 308). El descubrimiento del segundo redirect (`/contact`→`/contacto`, no
+  nombrado en §6, que solo citaba `/about`) quedó registrado en `spec.md` §5.5/§6.
+- **`sitemap.ts`** actualizado: ahora lista las rutas nuevas (Enfoque, Trabajo,
+  Nosotros, Contacto + los 2 casos leídos de la colección `casos`, fuente única).
+- **`src/lib/text.ts`:** helper `plainText` (saca `*énfasis*`) extraído de
+  `markdown.tsx` a un módulo **sin JSX**, para que el generador de llms pueda
+  importarlo bajo el type-stripping de Node (que no compila JSX).
+
+### Checks de PR-5 (mecánicos, "saben fallar")
+- `npm run check:llms` — regenera del markdown y diffea contra `public/` (drift = exit 1).
+- `npm run check:redirects` — `next start` + recorre el mapa: cada viejo→nuevo debe dar
+  **301** con el `Location` correcto; un 200/404 o un destino mal → exit 1.
+- `npm run check:seo` — `next start` + por ruta: `<link rel="canonical">` esperado +
+  todo `<script type="application/ld+json">` parsea, usa `@context schema.org` y los
+  `@type` requeridos están y bien formados (Organization, CreativeWork×2, FAQPage).
+
 ## SSR-presence check (PR-1, extendido en PR-2 y PR-3)
 
 `scripts/check-ssr-presence.mjs` (`npm run check:ssr`). Levanta `next start` y hace
@@ -152,7 +203,7 @@ violación deliberada — en PR-3, omitir un párrafo de Essay del render server
 
 ## Shell
 
-- `layout.tsx`: fuentes, metadata nueva (sin taglines viejos), `<Navbar>` + `<main>` + `<Footer>`. El JSON-LD viejo se removió (lo rehace PR-5 con la narrativa nueva).
+- `layout.tsx`: fuentes, metadata nueva (sin taglines viejos), `<Navbar>` + `<main>` + `<Footer>`. El JSON-LD viejo se removió; **PR-5** emite el `Organization` nuevo acá (global, server-rendered).
 - `components/Navbar.tsx`: wordmark `nautom` + "Cómo funciona" (`/enfoque`) · "Casos" (`/trabajo`) · CTA primario "Conversemos tu caso" (`/contacto`). El verbo es conversacional, nunca "demo" (vendemos servicio a medida, no SaaS). Las rutas `/enfoque` y `/trabajo` aún no existen (llegan en PR-3).
 - `components/Footer.tsx`: wordmark + links (Enfoque/Trabajo/Nosotros/Contacto) + LinkedIn.
 
@@ -161,7 +212,9 @@ violación deliberada — en PR-3, omitir un párrafo de Essay del render server
 - **Resend**: init lazy dentro del handler (`src/app/api/contact/route.ts`). El build pasa sin `RESEND_API_KEY`; si falta en runtime, el endpoint responde 503.
 - **OG**: un solo generador, `src/app/opengraph-image.tsx` (file-based, lo reusa `twitter-image.tsx`), en el sistema nuevo. Se eliminó el segundo generador (`scripts/generate-og.mjs`) y su salida `public/og-image.png`. Fuentes para el OG vendoreadas en `src/app/fonts/*.woff`.
 - **Contacto**: página re-estilada al sistema nuevo, reusa el pipeline Resend. Contenido fino es de PRs posteriores.
-- **`/about`**: ruta vieja **eliminada**. El Nosotros nuevo va en `/nosotros` (PR-3) y el 301 `/about`→`/nosotros` lo agrega PR-5.
+- **`/about`** y **`/contact`**: rutas viejas **eliminadas**. El Nosotros nuevo va en
+  `/nosotros` y el contacto en `/contacto`. Los 301 (`/about`→`/nosotros`,
+  `/contact`→`/contacto`) los agregó **PR-5** (`src/lib/redirects.ts`).
 - **`framer-motion`** quedó como dep sin uso tras limpiar los componentes viejos. No se removió (probable uso en PR-1/PR-4).
 - **Assets sin usar en `public/`**: logos copper viejos (`logo-white-copper.svg`, etc.). No los referencia nada en código; se reemplazan cuando exista el logo nuevo.
 
@@ -171,6 +224,12 @@ violación deliberada — en PR-3, omitir un párrafo de Essay del render server
 npm run type-check   # tsc --noEmit
 npm run lint         # eslint . (flat config nativa de eslint-config-next 16)
 RESEND_API_KEY unset; npm run build   # debe pasar sin la env var
-npm run check:ssr    # SSR-presence (requiere build previo); ver arriba
-npm run smoke:agent  # monta la máquina del widget de Caso A y avanza todos sus pasos (PR-4)
+npm run check:ssr       # SSR-presence (requiere build previo); ver arriba
+npm run smoke:agent     # monta la máquina del widget de Caso A y avanza sus pasos (PR-4)
+npm run check:llms      # llms.txt/llms-full.txt derivan del markdown — drift = fallo (PR-5)
+npm run check:redirects # cada 301 viejo→nuevo resuelve (requiere build previo) (PR-5)
+npm run check:seo       # canonicals + JSON-LD válidos en el HTML SSR (requiere build) (PR-5)
 ```
+
+Si cambia el contenido markdown, regenerá los archivos de LLM y commiteá:
+`npm run llms:gen` (si no, `check:llms` falla por drift).

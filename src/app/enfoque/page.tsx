@@ -9,6 +9,7 @@ const enfoque = getPagina("enfoque");
 export const metadata: Metadata = {
   title: `${enfoque.eyebrow} — Nautom`,
   description: enfoque.summary,
+  alternates: { canonical: "/enfoque" },
 };
 
 export default function EnfoquePage() {
