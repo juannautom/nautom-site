@@ -113,7 +113,11 @@ Reposicionar el site público de Nautom de "agentes de IA y automatización para
 
 ### 5.5 Fixes de contenido (QA — no son diseño)
 - **Clientes reales:** reemplazar los placeholders inventados de Design (Meridia/Cobalto/Astra/Nodo) por los reales (Integra/Lecker/Padel/Peerforum) o el framing anonimizado acordado. Y la línea "cuatro operaciones, un mismo invariante" solo si es verdad de los cuatro — si no, generalizarla o sacarla.
+  - **[PR-1, resuelto en Home]** La barra de logos usa 9 logos (lista/orden de Juancho): Peerforum, IVESS El Jumillano, Altis Viajes, Integra Groupe, Impacto Positivo, Quanta, YPF Gas, KeepSmiling, Lecker Argentina. Kova se eliminó. Display = **marquee de una sola fila** (CSS puro). La línea "cuatro operaciones, un mismo invariante" no se usó en Home.
+  - **[PR-1]** Rutas de los casos profundas que consumen los teasers de Home (páginas en PR-2): `/trabajo/dos-verdades` (Caso A) y `/trabajo/tener-todo-a-la-vista` (Caso B).
+  - **[PR-1]** El teaser de Caso B lidera con los datos de escala de §4 ("190 rutas diarias", "~600 empleados", "~170K clientes") → **flag para review**: confirmar que corresponden a esa distribuidora antes de go-live. El teaser de Caso A no incluye dato de escala (no hay uno medido; no se inventa, §4).
 - **IDs de asiento coherentes** entre Caso A y Caso B: hoy reusan `·0001`/`·0003` con significados distintos. Hilar un solo ledger ficticio coherente, o desacoplar los IDs.
+  - **[PR-2, resuelto]** Se decidió **no mostrar numeración de asientos** en las páginas de caso: §5.1 prohíbe `§`/"expediente"/numeración de asientos en superficies de entrada, y las dos páginas de caso son superficie de venta. Sin IDs, ninguno puede significar dos cosas → el fix queda cerrado por la vía de sacarlos, no de hilarlos. Si más adelante se quiere un ledger ficticio visible, reabrir acá.
 
 ## 6. Breakdown de PRs + verificación
 
