@@ -14,7 +14,18 @@ export type HeroContent = {
   ctas: Cta[];
 };
 
-export type Logo = { src: string; alt: string };
+/**
+ * A breadth-proof logo. `src` is optional: a logo we don't have the asset for yet
+ * is marked `pending` and rendered as a placeholder slot (so the full grid can be
+ * tested at its real count). `scale` is an optical nudge (default 1) to balance
+ * logos with very different aspect ratios inside identical grid cells.
+ */
+export type Logo = {
+  name: string;
+  src?: string;
+  scale?: number;
+  pending?: boolean;
+};
 
 export type ProofContent = {
   heading: string;
