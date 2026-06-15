@@ -29,3 +29,16 @@ export function readSection<T>(
   const { data, content } = matter(raw);
   return { data: data as T, body: content.trim() };
 }
+
+/** List the slugs (filenames without `.md`) of a collection, for static params. */
+export function listSlugs(
+  collection: string,
+  locale: string = DEFAULT_LOCALE,
+): string[] {
+  const dir = path.join(CONTENT_ROOT, locale, collection);
+  return fs
+    .readdirSync(dir)
+    .filter((f) => f.endsWith(".md"))
+    .map((f) => f.replace(/\.md$/, ""))
+    .sort();
+}

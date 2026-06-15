@@ -10,8 +10,8 @@ Next.js 16 (App Router, Turbopack) · React 19 · Tailwind v4 (tokens en `@theme
 ## Estado del breakdown
 
 - [x] **PR-0 — Fundación**. Fixes base + sistema visual nuevo. Deja el shell listo para construir páginas encima. **No** toca contenido de páginas (es PR-1+).
-- [x] **PR-1 — Capa de contenido (markdown) + Home** (este). Home real en un scroll, alimentada por markdown versionado.
-- [ ] PR-2 — Caso A + Caso B.
+- [x] **PR-1 — Capa de contenido (markdown) + Home**. Home real en un scroll, alimentada por markdown versionado.
+- [x] **PR-2 — Caso A + Caso B** (este). Dos páginas de caso profundo sobre `/trabajo/<slug>`.
 - [ ] PR-3 — Enfoque + Nosotros + Trabajo.
 - [ ] PR-4 — Sesión del agente (en Caso A).
 - [ ] PR-5 — Capa-LLM/SEO: robots.txt, llms.txt, JSON-LD, canonicals, redirects 301.
@@ -68,14 +68,33 @@ infra que después alimenta `llms.txt` (PR-5) y la que demuestra la tesis del si
 - **Rutas de los casos** (las consume el teaser ahora; las páginas llegan en PR-2):
   `/trabajo/dos-verdades` y `/trabajo/tener-todo-a-la-vista`.
 
-## SSR-presence check (PR-1)
+## Casos profundos (PR-2)
 
-`scripts/check-ssr-presence.mjs` (`npm run check:ssr`). Levanta `next start`, hace
-fetch del HTML de `/` y verifica que el copy del hero y del antes/después está en el
-**markup renderizado** (no en el flight payload). Lee las frases esperadas del mismo
-markdown, así no driftea. **Sabe fallar:** quita los `<script>` antes de buscar, de
-modo que si una sección pasa a render client-side (copy inyectado por JS) el copy
-desaparece del HTML y el check sale con exit ≠ 0 (validado con una violación deliberada).
+- **Contenido:** `content/es/casos/<slug>.md` — mismo patrón que PR-1. Frontmatter con
+  una lista ordenada de `sections` (kinds: `prose`, `scale`, `layers`, `invariant`,
+  `payoff`), así un solo renderer sirve ambos casos y cada archivo controla su orden.
+  Slugs: `dos-verdades` (A) y `tener-todo-a-la-vista` (B).
+- **Loader:** `src/lib/casos.ts` (`getCaso`, `getCasoSlugs`) sobre `readSection`/
+  `listSlugs` de `content.ts`.
+- **Ruta:** `src/app/trabajo/[slug]/page.tsx` — SSG (`generateStaticParams` +
+  `dynamicParams=false`), Server Component → copy en el HTML SSR. `params` se await-ea
+  (Next 16). `/trabajo` (índice) llega en PR-3; los links a `/trabajo` 404ean hasta entonces.
+- **Renderer:** `src/components/casos/CaseSections.tsx`. El `kind: "layers"` es el
+  diagrama blueprint-sobre-papel (dos paneles hairline con grilla técnica sutil + flecha
+  operación→contabilidad). El invariante (kind `invariant`) se muestra en idioma plano.
+- **IDs de asiento:** se decidió NO mostrar numeración de asientos en las páginas de
+  caso (§5.1 lo prohíbe en superficies de entrada) → resuelve el fix §5.5 sin que ningún
+  ID signifique dos cosas.
+
+## SSR-presence check (PR-1, extendido en PR-2)
+
+`scripts/check-ssr-presence.mjs` (`npm run check:ssr`). Levanta `next start` y hace
+fetch del HTML de **3 rutas** (`/`, `/trabajo/dos-verdades`, `/trabajo/tener-todo-a-la-vista`),
+verificando que el copy clave está en el **markup renderizado** (no en el flight payload).
+Lee las frases esperadas del mismo markdown, así no driftea. **Sabe fallar:** quita los
+`<script>` antes de buscar, de modo que si una sección pasa a render client-side (copy
+inyectado por JS) el copy desaparece del HTML y el check sale con exit ≠ 0 (validado en
+PR-1 y PR-2 con una violación deliberada).
 
 ## Shell
 
