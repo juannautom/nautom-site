@@ -11,8 +11,8 @@ Next.js 16 (App Router, Turbopack) · React 19 · Tailwind v4 (tokens en `@theme
 
 - [x] **PR-0 — Fundación**. Fixes base + sistema visual nuevo. Deja el shell listo para construir páginas encima. **No** toca contenido de páginas (es PR-1+).
 - [x] **PR-1 — Capa de contenido (markdown) + Home**. Home real en un scroll, alimentada por markdown versionado.
-- [x] **PR-2 — Caso A + Caso B** (este). Dos páginas de caso profundo sobre `/trabajo/<slug>`.
-- [ ] PR-3 — Enfoque + Nosotros + Trabajo.
+- [x] **PR-2 — Caso A + Caso B**. Dos páginas de caso profundo sobre `/trabajo/<slug>`.
+- [x] **PR-3 — Enfoque + Nosotros + Trabajo** (este). Ensayo + modelo operativo + índice de Trabajo.
 - [ ] PR-4 — Sesión del agente (en Caso A).
 - [ ] PR-5 — Capa-LLM/SEO: robots.txt, llms.txt, JSON-LD, canonicals, redirects 301.
 
@@ -86,15 +86,37 @@ infra que después alimenta `llms.txt` (PR-5) y la que demuestra la tesis del si
   caso (§5.1 lo prohíbe en superficies de entrada) → resuelve el fix §5.5 sin que ningún
   ID signifique dos cosas.
 
-## SSR-presence check (PR-1, extendido en PR-2)
+## Enfoque + Nosotros + Trabajo (PR-3)
+
+- **Enfoque / Nosotros (ensayos):** `content/es/paginas/<slug>.md` — mismo patrón que
+  PR-1/PR-2. Frontmatter con `eyebrow`, `title`, `summary`, `paragraphs` (el ensayo,
+  load-bearing) y un `closing` (CTA) opcional. Copy de los párrafos = **verbatim de
+  §5.4** (copy v1 — Juancho edita voz). Loader `src/lib/paginas.ts` (`getPagina`),
+  renderer `src/components/paginas/Essay.tsx` (un Server Component sirve ambas).
+  Rutas `src/app/enfoque/page.tsx` y `src/app/nosotros/page.tsx` (estáticas).
+- **Trabajo (índice):** `content/es/trabajo/index.md` (intro + 4 proyectos livianos) +
+  loader `src/lib/trabajo.ts` (`getTrabajoIndex`) que **lee los 2 casos de la colección
+  `casos`** (fuente única, sin duplicar copy; orden por slug → A, B). Los 2 casos
+  linkean a `/trabajo/<slug>`; los 4 livianos son **logo + línea, sin página** (Padel
+  no tiene asset → fallback al nombre, mismo patrón `pending` que la barra de logos).
+  Renderer `src/components/trabajo/TrabajoIndex.tsx`, ruta `src/app/trabajo/page.tsx`.
+  Cierra la Abierta de §5.3 (líneas confirmadas en `spec.md`). La línea "cuatro
+  operaciones, un mismo invariante" **no se usa** (§5.5): no es verdad de los cuatro.
+- El grid de 6 servicios **no** revive en Enfoque (§4): el alcance se cuenta en prosa,
+  no en una grilla.
+
+## SSR-presence check (PR-1, extendido en PR-2 y PR-3)
 
 `scripts/check-ssr-presence.mjs` (`npm run check:ssr`). Levanta `next start` y hace
-fetch del HTML de **3 rutas** (`/`, `/trabajo/dos-verdades`, `/trabajo/tener-todo-a-la-vista`),
-verificando que el copy clave está en el **markup renderizado** (no en el flight payload).
-Lee las frases esperadas del mismo markdown, así no driftea. **Sabe fallar:** quita los
-`<script>` antes de buscar, de modo que si una sección pasa a render client-side (copy
-inyectado por JS) el copy desaparece del HTML y el check sale con exit ≠ 0 (validado en
-PR-1 y PR-2 con una violación deliberada).
+fetch del HTML de **6 rutas** (`/`, `/trabajo/dos-verdades`, `/trabajo/tener-todo-a-la-vista`,
+`/enfoque`, `/nosotros`, `/trabajo`), verificando que el copy clave está en el **markup
+renderizado** (no en el flight payload). Para `/trabajo` chequea la intro, las tesis de
+los 2 casos (leídas de `casos`) y las 4 líneas livianas. Lee las frases esperadas del
+mismo markdown, así no driftea. **Sabe fallar:** quita los `<script>` antes de buscar,
+de modo que si una sección pasa a render client-side (copy inyectado por JS) el copy
+desaparece del HTML y el check sale con exit ≠ 0 (validado en PR-1, PR-2 y PR-3 con una
+violación deliberada — en PR-3, omitir un párrafo de Essay del render server → exit 1 en
+`/enfoque` y `/nosotros`).
 
 ## Shell
 

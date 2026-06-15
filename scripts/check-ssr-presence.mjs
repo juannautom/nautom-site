@@ -11,6 +11,9 @@
  *   /                                  hero + antes/después (PR-1)
  *   /trabajo/dos-verdades              tesis, dos capas, invariante, payoff (PR-2)
  *   /trabajo/tener-todo-a-la-vista     tesis, datos de escala, hilos, payoff (PR-2)
+ *   /enfoque                           el ensayo del concepto, §5.4 (PR-3)
+ *   /nosotros                          el modelo operativo, §5.4 (PR-3)
+ *   /trabajo                           intro + tesis de los 2 casos + 4 líneas (PR-3)
  *
  * Expected phrases are read from the SAME markdown content layer the pages render
  * from, so the check tracks the content and cannot drift. It knows how to fail: if
@@ -73,10 +76,40 @@ function casoRoute(slug) {
   };
 }
 
+/** An essay page (Enfoque / Nosotros): every §5.4 paragraph is load-bearing. */
+function paginaRoute(slug) {
+  const pagina = frontmatter("paginas", slug);
+  return {
+    path: `/${slug}`,
+    checks: [{ where: `pagina:${slug}`, phrases: pagina.paragraphs }],
+  };
+}
+
+/**
+ * Trabajo index (`/trabajo`). The intro, the thesis of each deep case (pulled from
+ * the `casos` collection, the index's single source of truth) and the 4 light-project
+ * lines must all survive to the server-rendered HTML.
+ */
+function trabajoIndexRoute() {
+  const index = frontmatter("trabajo", "index");
+  const phrases = [index.intro];
+  for (const slug of ["dos-verdades", "tener-todo-a-la-vista"]) {
+    phrases.push(frontmatter("casos", slug).thesis);
+  }
+  for (const project of index.light) phrases.push(project.line);
+  return {
+    path: "/trabajo",
+    checks: [{ where: "trabajo:index", phrases }],
+  };
+}
+
 const ROUTES = [
   homeRoute(),
   casoRoute("dos-verdades"),
   casoRoute("tener-todo-a-la-vista"),
+  paginaRoute("enfoque"),
+  paginaRoute("nosotros"),
+  trabajoIndexRoute(),
 ];
 
 function fail(msg) {
