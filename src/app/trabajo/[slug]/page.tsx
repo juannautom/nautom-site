@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getCaso, getCasoSlugs } from "@/lib/casos";
+import { creativeWorkJsonLd } from "@/lib/jsonld";
+import JsonLd from "@/components/JsonLd";
 import CaseSections from "@/components/casos/CaseSections";
 import AgentSession from "@/components/casos/AgentSession";
 
@@ -25,6 +27,7 @@ export async function generateMetadata({
   return {
     title: `${caso.title} — Nautom`,
     description: caso.summary,
+    alternates: { canonical: `/trabajo/${slug}` },
   };
 }
 
@@ -39,6 +42,8 @@ export default async function CasoPage({
 
   return (
     <article className="mx-auto max-w-3xl px-6 py-20 md:py-28">
+      {/* CreativeWork structured data for this case study (PR-5), server-rendered. */}
+      <JsonLd data={creativeWorkJsonLd(caso)} />
       <header className="max-w-2xl">
         <p className="mb-6 font-mono text-xs uppercase tracking-[0.2em] text-accent">
           {caso.label}

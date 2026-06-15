@@ -10,6 +10,7 @@ const nosotros = getPagina("nosotros");
 export const metadata: Metadata = {
   title: `${nosotros.eyebrow} — Nautom`,
   description: nosotros.summary,
+  alternates: { canonical: "/nosotros" },
 };
 
 export default function NosotrosPage() {

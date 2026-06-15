@@ -3,6 +3,8 @@ import { Newsreader, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import JsonLd from "@/components/JsonLd";
+import { organizationJsonLd } from "@/lib/jsonld";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -67,6 +69,8 @@ export default function RootLayout({
       className={`${newsreader.variable} ${plexSans.variable} ${plexMono.variable}`}
     >
       <body className="bg-paper text-ink antialiased min-h-screen font-sans">
+        {/* Global Organization structured data (PR-5), server-rendered for LLMs. */}
+        <JsonLd data={organizationJsonLd()} />
         <Navbar />
         <main className="min-h-screen pt-16">{children}</main>
         <Footer />

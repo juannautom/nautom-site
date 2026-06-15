@@ -121,6 +121,14 @@ página propia. Líneas confirmadas (idioma comprador, §5.1):
     línea **"cuatro operaciones, un mismo invariante" NO se usa**: no es verdad de los
     cuatro (dominios distintos) → se saca, no se fuerza. Cierra la Abierta de §5.3.
   - **[PR-1]** El teaser de Caso B lidera con los datos de escala de §4 ("190 rutas diarias", "~600 empleados", "~170K clientes") → **flag para review**: confirmar que corresponden a esa distribuidora antes de go-live. El teaser de Caso A no incluye dato de escala (no hay uno medido; no se inventa, §4).
+  - **[PR-5, resuelto] Inventario de URLs viejas para el mapa de 301.** §6 solo nombraba
+    `/about`→`/nosotros`, pero el inventario exhaustivo (cruzando dos fuentes que
+    coinciden: el sitemap viejo de `main` y las rutas reales viejas `main:src/app/**`)
+    descubrió **una segunda URL viva** que también quedó muerta en el revamp:
+    `/contact` (la vieja, en inglés) → su destino nuevo es `/contacto`. El mapa de
+    PR-5 incluye **ambos** 301 (`/about`→`/nosotros`, `/contact`→`/contacto`). `/`
+    existe en viejo y nuevo → no se redirige. El endpoint `/api/contact` no es URL
+    navegable → no lleva 301.
 - **IDs de asiento coherentes** entre Caso A y Caso B: hoy reusan `·0001`/`·0003` con significados distintos. Hilar un solo ledger ficticio coherente, o desacoplar los IDs.
   - **[PR-2, resuelto]** Se decidió **no mostrar numeración de asientos** en las páginas de caso: §5.1 prohíbe `§`/"expediente"/numeración de asientos en superficies de entrada, y las dos páginas de caso son superficie de venta. Sin IDs, ninguno puede significar dos cosas → el fix queda cerrado por la vía de sacarlos, no de hilarlos. Si más adelante se quiere un ledger ficticio visible, reabrir acá.
 
@@ -136,7 +144,7 @@ página propia. Líneas confirmadas (idioma comprador, §5.1):
 | **PR-2** | Caso A ("Dos verdades" + diagrama blueprint-sobre-papel) y Caso B ("Tener todo a la vista"). Invariante en idioma plano. | build clean; contenido de ambos casos en HTML SSR. | ¿El diagrama se lee sin ser técnico? ¿Caso B respira sin la metáfora forzada? |
 | **PR-3** | Enfoque + Nosotros + Trabajo (índice: 2 casos + 4 livianos con logo+línea). | build clean; contenido en SSR. | Copy de Enfoque/Nosotros (Juancho ya editó el v1). |
 | **PR-4** | Sesión del agente (idioma plano, tratamiento panel) en página de Caso A. Adaptar la lógica JS del bundle de Design. | build clean; el componente monta y avanza los pasos sin error en consola. | ¿Se entiende sin jerga? ¿Aporta o distrae? |
-| **PR-5** | Capa-LLM/SEO: `robots.txt` (permitir ClaudeBot/GPTBot/PerplexityBot); `llms.txt` + `llms-full.txt` **autogenerados del markdown**; JSON-LD (`Organization` global, `CreativeWork` por caso, `FAQPage`); canonicals; mapa de **301** (`/about`→`/nosotros`, nuevas `/enfoque`, `/trabajo/*`). | build clean; `llms.txt` accesible y su contenido deriva del markdown (no hardcode); cada redirect viejo→nuevo resuelve 301; JSON-LD valida. | Que `llms.txt` represente bien el site. |
+| **PR-5** *(implementado)* | Capa-LLM/SEO: `robots.txt` (permite ClaudeBot/GPTBot/PerplexityBot); `llms.txt` + `llms-full.txt` **autogenerados del markdown** (servidos desde `public/`); JSON-LD (`Organization` global, `CreativeWork`×2 por caso, `FAQPage` en Home); canonicals SSR por ruta; mapa de **301** con `statusCode:301` (`/about`→`/nosotros`, `/contact`→`/contacto`; ver §5.5). Sitemap actualizado a las rutas nuevas. | build clean sin `RESEND_API_KEY`; `check:llms` regenera del markdown y diffea (no hardcode); `check:redirects` recorre el mapa (301 viejo→nuevo); `check:seo` valida canonicals + JSON-LD en el HTML SSR. | Que `llms.txt` represente bien el site; copy v1 de la FAQ. |
 
 ### Invariantes (checks ejecutables, adaptados a site de contenido)
 - **SSR-presence:** un check que hace fetch del HTML de cada ruta y verifica que el copy clave está en el markup (no requiere JS). Sabe fallar si una página pasa a render client-side.
