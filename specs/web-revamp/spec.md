@@ -91,11 +91,12 @@ Reposicionar el site público de Nautom de "agentes de IA y automatización para
 
 **Caso B — "Tener todo a la vista":** tesis "Las mejores decisiones no las toma quien más recuerda. Las toma quien tiene todo a la vista." Estructura de **dos hilos, a propósito**: (a) **cuerpo** = el hilo del cliente, anonimizado — una distribuidora dejó de depender de la memoria de su encargado; la carga invisible → el sistema toma la carga → la persona decide con todo delante; (b) **remate** = dogfooding — "y nosotros tampoco dependemos de una persona; el conocimiento del proyecto vive en el sistema". **Nunca un nombre propio** (es el concepto, no la persona). Lidera con datos de escala reales, no métrica de resultado inventada. Sin metáfora de capas ni rieles. Payoff "gente que decide mejor; una operación que no se frena cuando alguien falta".
 
-**Proyectos livianos (confirmar — Abierta):**
+**Proyectos livianos (cerrado — PR-3):** logo + una línea en el índice de Trabajo, sin
+página propia. Líneas confirmadas (idioma comprador, §5.1):
 - Integra — "App de gestión + portal de inversores para ver la cartera."
-- Lecker — "Revenue inteligente por producto, con alertas y forecast."
+- Lecker — "Saben qué producto les conviene vender, con alertas y proyección."
 - Padel — "Gestión + turnera de reservas de canchas."
-- Peerforum — "Inteligencia de comunidad: de datos dispersos a señales accionables."
+- Peerforum — "Inteligencia de comunidad: convierten datos dispersos en decisiones."
 
 ### 5.4 Copy v1 — Enfoque y Nosotros (Juancho edita)
 
@@ -115,6 +116,10 @@ Reposicionar el site público de Nautom de "agentes de IA y automatización para
 - **Clientes reales:** reemplazar los placeholders inventados de Design (Meridia/Cobalto/Astra/Nodo) por los reales (Integra/Lecker/Padel/Peerforum) o el framing anonimizado acordado. Y la línea "cuatro operaciones, un mismo invariante" solo si es verdad de los cuatro — si no, generalizarla o sacarla.
   - **[PR-1, resuelto en Home]** La barra de logos usa 9 logos (lista/orden de Juancho): Peerforum, IVESS El Jumillano, Altis Viajes, Integra Groupe, Impacto Positivo, Quanta, YPF Gas, KeepSmiling, Lecker Argentina. Kova se eliminó. Display = **marquee de una sola fila** (CSS puro). La línea "cuatro operaciones, un mismo invariante" no se usó en Home.
   - **[PR-1]** Rutas de los casos profundas que consumen los teasers de Home (páginas en PR-2): `/trabajo/dos-verdades` (Caso A) y `/trabajo/tener-todo-a-la-vista` (Caso B).
+  - **[PR-3, resuelto]** El índice de Trabajo (`/trabajo`) muestra los 4 proyectos
+    livianos como logo + línea (sin página), con las líneas confirmadas de §5.3. La
+    línea **"cuatro operaciones, un mismo invariante" NO se usa**: no es verdad de los
+    cuatro (dominios distintos) → se saca, no se fuerza. Cierra la Abierta de §5.3.
   - **[PR-1]** El teaser de Caso B lidera con los datos de escala de §4 ("190 rutas diarias", "~600 empleados", "~170K clientes") → **flag para review**: confirmar que corresponden a esa distribuidora antes de go-live. El teaser de Caso A no incluye dato de escala (no hay uno medido; no se inventa, §4).
 - **IDs de asiento coherentes** entre Caso A y Caso B: hoy reusan `·0001`/`·0003` con significados distintos. Hilar un solo ledger ficticio coherente, o desacoplar los IDs.
   - **[PR-2, resuelto]** Se decidió **no mostrar numeración de asientos** en las páginas de caso: §5.1 prohíbe `§`/"expediente"/numeración de asientos en superficies de entrada, y las dos páginas de caso son superficie de venta. Sin IDs, ninguno puede significar dos cosas → el fix queda cerrado por la vía de sacarlos, no de hilarlos. Si más adelante se quiere un ledger ficticio visible, reabrir acá.
