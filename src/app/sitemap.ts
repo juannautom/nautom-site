@@ -9,13 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: "https://nautom.com/about",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: "https://nautom.com/contact",
+      url: "https://nautom.com/contacto",
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,

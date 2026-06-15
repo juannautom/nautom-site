@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Contacto | Nautom",
   description:
-    "Contactá a Nautom. Contanos tu desafío y te proponemos una solución con IA y automatización a medida para tu empresa.",
+    "Contanos qué frena hoy tu operación. Construimos software que se hace cargo de las reglas de tu negocio.",
 };
 
 export default function ContactLayout({
