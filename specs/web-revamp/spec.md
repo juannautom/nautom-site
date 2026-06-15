@@ -113,6 +113,9 @@ Reposicionar el site público de Nautom de "agentes de IA y automatización para
 
 ### 5.5 Fixes de contenido (QA — no son diseño)
 - **Clientes reales:** reemplazar los placeholders inventados de Design (Meridia/Cobalto/Astra/Nodo) por los reales (Integra/Lecker/Padel/Peerforum) o el framing anonimizado acordado. Y la línea "cuatro operaciones, un mismo invariante" solo si es verdad de los cuatro — si no, generalizarla o sacarla.
+  - **[PR-1, resuelto en Home]** La barra de logos de la Home usa 7 logos reales de `public/images/logos/` (keepsmiling, visible, inspira, ivess, shades-by-shan, integra, peerforum). `ypf-gas2`/`avenida+`/`Impacto Positivo` quedaron afuera por no confirmar que sean clientes de esa barra → **flag para review de Juancho**. La línea "cuatro operaciones, un mismo invariante" no se usó en Home.
+  - **[PR-1]** Rutas de los casos profundas que consumen los teasers de Home (páginas en PR-2): `/trabajo/dos-verdades` (Caso A) y `/trabajo/tener-todo-a-la-vista` (Caso B).
+  - **[PR-1]** El teaser de Caso B lidera con los datos de escala de §4 ("190 rutas diarias", "~600 empleados", "~170K clientes") → **flag para review**: confirmar que corresponden a esa distribuidora antes de go-live. El teaser de Caso A no incluye dato de escala (no hay uno medido; no se inventa, §4).
 - **IDs de asiento coherentes** entre Caso A y Caso B: hoy reusan `·0001`/`·0003` con significados distintos. Hilar un solo ledger ficticio coherente, o desacoplar los IDs.
 
 ## 6. Breakdown de PRs + verificación
