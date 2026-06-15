@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint .",
     "type-check": "tsc --noEmit",
-    "check:ssr": "node scripts/check-ssr-presence.mjs"
+    "check:ssr": "node scripts/check-ssr-presence.mjs",
+    "smoke:agent": "node scripts/smoke-agent-session.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^1.6.1",

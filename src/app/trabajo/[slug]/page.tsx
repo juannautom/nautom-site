@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getCaso, getCasoSlugs } from "@/lib/casos";
 import CaseSections from "@/components/casos/CaseSections";
+import AgentSession from "@/components/casos/AgentSession";
 
 // Deep case pages (PR-2). Static route under /trabajo/* so the PR-5 301 map
 // (/trabajo/<slug>) doesn't have to rewrite it. Server Component reading the
@@ -53,6 +54,14 @@ export default async function CasoPage({
       <div className="mt-16 md:mt-24">
         <CaseSections sections={caso.sections} />
       </div>
+
+      {/* Caso A's interactive piece (PR-4). Progressive enhancement: it only adds —
+          the load-bearing case copy above stays server-rendered. Caso A only. */}
+      {slug === "dos-verdades" && (
+        <div className="mt-16 md:mt-24">
+          <AgentSession />
+        </div>
+      )}
 
       <footer className="mt-20 border-t border-hairline pt-10 md:mt-28">
         <div className="flex flex-wrap items-center gap-x-6 gap-y-4">

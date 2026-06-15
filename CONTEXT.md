@@ -13,7 +13,7 @@ Next.js 16 (App Router, Turbopack) · React 19 · Tailwind v4 (tokens en `@theme
 - [x] **PR-1 — Capa de contenido (markdown) + Home**. Home real en un scroll, alimentada por markdown versionado.
 - [x] **PR-2 — Caso A + Caso B**. Dos páginas de caso profundo sobre `/trabajo/<slug>`.
 - [x] **PR-3 — Enfoque + Nosotros + Trabajo** (este). Ensayo + modelo operativo + índice de Trabajo.
-- [ ] PR-4 — Sesión del agente (en Caso A).
+- [x] **PR-4 — Sesión del agente** (en Caso A). Widget interactivo de validación en vivo.
 - [ ] PR-5 — Capa-LLM/SEO: robots.txt, llms.txt, JSON-LD, canonicals, redirects 301.
 
 ## Sistema visual (PR-0) — locked, ver spec §5.2
@@ -105,6 +105,38 @@ infra que después alimenta `llms.txt` (PR-5) y la que demuestra la tesis del si
 - El grid de 6 servicios **no** revive en Enfoque (§4): el alcance se cuenta en prosa,
   no en una grilla.
 
+## Sesión del agente (PR-4)
+
+La única pieza interactiva del revamp. Vive en la página de **Caso A**
+(`/trabajo/dos-verdades`), no en Home (§4): es lo más diferenciador pero exige
+atención, así que va donde el lector ya está enganchado.
+
+- **Máquina de estados:** `src/lib/agentSession.ts` — módulo **puro, sin React**.
+  Lleva los pasos del ciclo (`propone mal → el sistema lo frena → lo corrige → listo`)
+  y las funciones `nextStep`/`isLastStep`/`stepAt`. Toda la micro-copy vive acá, en
+  **idioma plano (§5.1)**: sin nombres de guarda en inglés, sin `§`, sin notación
+  `∀/m₁`, sin logs. El ejemplo es la regla del propio Caso A (una deuda en pesos no
+  se salda con un crédito en dólares) → el último paso aterriza en la tesis del caso.
+- **Componente:** `src/components/casos/AgentSession.tsx` (`"use client"`) — shell
+  fino sobre la máquina. Tratamiento "panel de validación en vivo" simplificado:
+  un panel que avanza paso a paso, dots de progreso, estado en palabras
+  ("Frenado por el sistema" / "Movimiento registrado"), `aria-live` en la línea,
+  el acento (óxido) **se gana** solo en el paso "frenado". Sin animación pesada.
+- **Enhancement progresivo, no reemplazo:** se monta sólo para `dos-verdades`,
+  **después** de `CaseSections`. El copy load-bearing de Caso A (tesis, invariante,
+  dos capas) **no se movió al cliente** → Caso A sigue pasando SSR-presence (el widget
+  agrega; no refactoriza el contenido hacia JS).
+- **Smoke check:** `scripts/smoke-agent-session.mjs` (`npm run smoke:agent`) importa
+  la **misma** máquina (Node 24 stripea los tipos del `.ts` en runtime) y la recorre
+  entera sin DOM: monta, avanza los 5 pasos, y **sabe fallar** si un paso tira
+  (`stepAt` rompe en índice inválido, el walk está acotado) o si una línea viola §5.1
+  (escanea `§`, notación matemática, nombres técnicos en inglés, logs).
+- **Nota de discovery:** el asset JS de la máquina del bundle de Design (referido en
+  el spec) **no estaba en este workspace** — se buscó en el repo, todas las ramas, el
+  historial de git y los workspaces hermanos. La máquina reconstruye la conducta
+  documentada (§4 + §5.1), que está completa; no se reescribió una lógica existente,
+  se reconstruyó una ausente. Si el asset aparece, conviene reconciliar.
+
 ## SSR-presence check (PR-1, extendido en PR-2 y PR-3)
 
 `scripts/check-ssr-presence.mjs` (`npm run check:ssr`). Levanta `next start` y hace
@@ -139,5 +171,6 @@ violación deliberada — en PR-3, omitir un párrafo de Essay del render server
 npm run type-check   # tsc --noEmit
 npm run lint         # eslint . (flat config nativa de eslint-config-next 16)
 RESEND_API_KEY unset; npm run build   # debe pasar sin la env var
-npm run check:ssr    # SSR-presence de / (requiere build previo); ver arriba
+npm run check:ssr    # SSR-presence (requiere build previo); ver arriba
+npm run smoke:agent  # monta la máquina del widget de Caso A y avanza todos sus pasos (PR-4)
 ```
