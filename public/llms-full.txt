@@ -1,0 +1,138 @@
+# Nautom
+
+> El conocimiento de tu empresa no debería vivir en la cabeza de unas pocas personas. Construimos software que se hace cargo de las reglas del negocio y las hace cumplir solo.
+
+---
+
+## Inicio
+
+Que el conocimiento de tu empresa viva en el sistema, no en las personas.
+
+Las reglas de tu negocio dejan de estar en la cabeza de alguien y pasan a estar en el software. La operación no se frena cuando esa persona no está.
+
+### El cambio
+
+**Antes:** El conocimiento vive en una persona. Si esa persona no está, te frenás. Si se va, el conocimiento se va con ella.
+
+**Después:** El conocimiento vive en el sistema. Las reglas del negocio están en el software y se cumplen solas. La persona decide mejor, con todo a la vista.
+
+---
+
+## Enfoque
+
+Que el conocimiento de tu empresa viva en el sistema, no en las personas.
+
+Toda empresa funciona con reglas. Cómo se cotiza, qué se puede prometer, qué nunca hay que hacer. El problema es dónde viven esas reglas: casi siempre, en la cabeza de unas pocas personas.
+
+Cuando el conocimiento vive en personas, la empresa depende de que estén. Una se enferma, otra se va, y con ella se va el cómo se hacían las cosas. Cada decisión importante necesita a la persona que sabe.
+
+Nosotros construimos software que se hace cargo de esas reglas. No un sistema que solo guarda datos — un sistema que conoce los límites del negocio y no deja cruzarlos, aunque alguien se equivoque.
+
+Sobre esa base, construir lo nuevo es rápido y seguro. Y la IA tiene de qué agarrarse: puede operar y proponer porque las reglas están escritas y se hacen cumplir, no porque adivina.
+
+La industria empieza a nombrar esto: el valor no está en qué modelo de IA usás, sino en si el conocimiento de tu empresa está ordenado y operable. El que lo tiene, aprovecha la IA de verdad. El que lo tiene en la cabeza de unos pocos, queda atrás.
+
+---
+
+## Nosotros
+
+Somos la prueba de lo que vendemos.
+
+Nautom es un estudio de software AI-first. Somos chicos a propósito: construimos sistemas a medida para PyMEs argentinas, con un método donde la IA hace gran parte de la construcción y nosotros dirigimos.
+
+Eso no es un truco de productividad. Es la misma idea que vendemos, aplicada a nosotros: el contexto de cada proyecto vive en el sistema, no en la cabeza de quien lo armó. Por eso construimos rápido, y por eso el conocimiento de tu proyecto queda tuyo y operable — no dependés de una persona puntual, ni siquiera de la nuestra.
+
+---
+
+## Trabajo
+
+Dos casos en profundidad sobre cómo pensamos el software, y una muestra de proyectos en los que el conocimiento ya vive en el sistema.
+
+- **Integra:** App de gestión + portal de inversores para ver la cartera.
+
+- **Lecker:** Saben qué producto les conviene vender, con alertas y proyección.
+
+- **Padel:** Gestión + turnera de reservas de canchas.
+
+- **Peerforum:** Inteligencia de comunidad: convierten datos dispersos en decisiones.
+
+---
+
+## Caso: Dos verdades
+
+**La operación y la contabilidad son dos verdades distintas. El software que las mezcla corrompe las dos.**
+
+Un sistema que separa la operación de la contabilidad: el equipo construye rápido y el sistema no deja romper los números, aunque alguien se equivoque.
+
+### El problema
+
+Casi todos los sistemas guardan una sola versión de los hechos. La venta, el stock y el asiento contable viven en la misma tabla. Entonces un ajuste cualquiera de la operación —corregir una entrega, mover una fecha, rehacer un pedido— toca la contabilidad sin que nadie lo haya decidido.
+
+El día que cierra el balance, los números no cuadran y nadie sabe por qué. La empresa empieza a tenerle miedo a su propio sistema: cada cambio puede romper algo lejos.
+
+### Dos capas, a propósito
+
+Por eso separamos el sistema en dos capas que se hablan, pero no se pisan.
+
+- **Operación:** Donde el equipo trabaja todos los días: pedidos, entregas, ajustes. Rápida y flexible — acá se puede cambiar y corregir sin miedo.
+
+- **Contabilidad:** El registro de lo que realmente pasó. No se reescribe. La operación la alimenta; nunca la sobrescribe.
+
+### La regla que el sistema hace cumplir solo
+
+Una deuda en pesos no se tapa con un crédito en dólares. Aunque alguien lo intente, el sistema no lo deja.
+
+El sistema conoce los límites del negocio y los sostiene, sin depender de que una persona se acuerde de respetarlos.
+
+Construís rápido sin miedo: el sistema no te deja romper la contabilidad aunque te equivoques.
+
+---
+
+## Caso: Tener todo a la vista
+
+**Las mejores decisiones no las toma quien más recuerda. Las toma quien tiene todo a la vista.**
+
+Una distribuidora dejó de depender de la memoria de su encargado: el conocimiento de la operación pasó a estar a la vista de todos, y la operación ya no se frena cuando alguien falta.
+
+Una distribuidora que mueve esto todos los días:
+- 190 rutas diarias
+- ~600 empleados
+- ~170.000 clientes
+
+### La carga invisible
+
+Durante años, gran parte de esa operación vivía en la cabeza de una persona: el encargado. Qué cliente paga a treinta días, qué repartos conviene juntar, a quién mejor no fiarle. Conocimiento real, pero invisible: no estaba en ningún lado más que en su memoria.
+
+El problema no era esa persona. Era que la operación dependía de que estuviera. Si faltaba, las decisiones se frenaban o se tomaban a ciegas.
+
+### El sistema toma la carga
+
+Construimos un sistema que se hace cargo de eso: junta lo que antes estaba disperso y lo pone delante. La información de cada cliente, cada ruta y cada cuenta deja de vivir en una cabeza y pasa a estar a la vista de todos.
+
+Ahora el encargado no tiene que recordar: decide. Y cuando no está, la operación sigue, porque lo que sabía dejó de irse con él.
+
+### Y nosotros igual
+
+Funcionamos con la misma idea aplicada a nosotros. El conocimiento de cada proyecto que construimos no vive en la cabeza de quien lo armó: vive en el sistema. Por eso avanzamos rápido, y por eso lo que construimos para vos queda tuyo y operable — sin depender de una persona puntual, ni siquiera de la nuestra.
+
+Gente que decide mejor. Una operación que no se frena cuando alguien falta.
+
+---
+
+## Preguntas frecuentes
+
+### ¿Qué hace Nautom?
+
+Nautom es un estudio de software AI-first. Construimos sistemas a medida para PyMEs argentinas: software que se hace cargo de las reglas de tu negocio y las hace cumplir solo, para que el conocimiento deje de vivir en la cabeza de unas pocas personas.
+
+### ¿Qué significa que el conocimiento viva en el sistema?
+
+Las reglas de tu negocio dejan de estar en la cabeza de alguien y pasan a estar en el software. La operación no se frena cuando esa persona no está.
+
+### ¿Para quién construyen?
+
+Para dueños y gerentes de PyMEs argentinas que no quieren que su operación dependa de que una persona puntual esté. Hablamos en idioma de dueño de empresa, no técnico.
+
+### ¿Por qué conviene que las reglas vivan en el software?
+
+Sobre esa base, construir lo nuevo es rápido y seguro. Y la IA tiene de qué agarrarse: puede operar y proponer porque las reglas están escritas y se hacen cumplir, no porque adivina.

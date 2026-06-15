@@ -1,108 +1,91 @@
 @import "tailwindcss";
 
-@theme inline {
-  /* Brand book — core palette */
-  --color-background: #0C1B33;
-  --color-foreground: #E8E4DC;
-  --color-primary: #D4804A;
-  --color-primary-mid: #1E3A5F;
-  --color-muted: #8B9DB5;
-  --color-surface: #FAFAF8;
+/* ──────────────────────────────────────────────────────────────────
+   Nautom visual system (locked in Design — spec §5.2)
+   Paper + ink + oxide. No dark mode, no gradients, no glassmorphism.
+   ────────────────────────────────────────────────────────────────── */
+@theme {
+  /* Paper — backgrounds, lightest → slightly recessed */
+  --color-paper: oklch(0.986 0.006 78);
+  --color-paper-2: oklch(0.968 0.006 78);
+  --color-paper-3: oklch(0.948 0.006 78);
 
-  /* Brand book — copper ramp for UI states */
-  --color-accent-50: #F5E6DA;
-  --color-accent-200: #E8B39A;
-  --color-accent-500: #D4804A;
-  --color-accent-700: #A35E30;
-  --color-accent-900: #6B3D1F;
+  /* Ink — text, primary → tertiary */
+  --color-ink: oklch(0.225 0.01 56);
+  --color-ink-2: oklch(0.44 0.01 56);
+  --color-ink-3: oklch(0.62 0.01 56);
 
-  /* Derived UI surfaces (dark theme) */
-  --color-card: rgba(30, 58, 95, 0.2);
-  --color-card-border: rgba(139, 157, 181, 0.12);
+  /* Oxide — accent. Earned, not spread. */
+  --color-accent: oklch(0.555 0.145 46);
+  --color-accent-ink: oklch(0.46 0.145 46);
+
+  /* Hairline — 1px rules between sections */
+  --color-hairline: oklch(0.225 0.01 56 / 0.12);
+
+  /* Aliases so semantic utilities (bg-background / text-foreground) resolve */
+  --color-background: var(--color-paper);
+  --color-foreground: var(--color-ink);
 
   /* Typography */
-  --font-mono: var(--font-space-mono), monospace;
-  --font-sans: var(--font-inter), sans-serif;
+  --font-display: var(--font-newsreader), Georgia, serif;
+  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    background-color: #0C1B33;
-    color: #E8E4DC;
-    font-family: var(--font-inter), sans-serif;
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Display headings use the serif by default */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
   }
 }
 
-/* Copper pipe decoration */
-.pipe-copper::before {
-  content: '';
-  display: inline-block;
-  width: 3px;
-  height: 100%;
-  min-height: 1.5em;
-  background-color: #D4804A;
-  margin-right: 12px;
-  border-radius: 2px;
-  flex-shrink: 0;
-}
-
-.pipe-copper {
-  display: flex;
-  align-items: flex-start;
-}
-
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: #0C1B33;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #D4804A;
-  border-radius: 3px;
-}
-
-/* Smooth scroll */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Floating animations for UI fragments — three depth layers */
-@keyframes float-fg {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-@keyframes float-mg {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-@keyframes float-bg {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-3px); }
-}
-
-.animate-float-fg { animation: float-fg 3s ease-in-out infinite; }
-.animate-float-mg { animation: float-mg 4.5s ease-in-out infinite; }
-.animate-float-bg { animation: float-bg 7s ease-in-out infinite; }
-
-/* Scroll hint bounce */
-@keyframes scroll-hint-bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(5px); }
-}
-
-.scroll-hint-bounce {
-  animation: scroll-hint-bounce 2s ease-in-out infinite;
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .animate-float-fg,
-  .animate-float-mg,
-  .animate-float-bg,
-  .scroll-hint-bounce {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   Logo marquee (PR-1 proof bar) — single row, CSS-only so the logos
+   stay in the server-rendered HTML (no JS, capa-LLM §3). Two identical
+   copies of the track translate by -50% for a seamless loop.
+   ────────────────────────────────────────────────────────────────── */
+@keyframes nautom-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: nautom-marquee var(--marquee-duration, 48s) linear infinite;
+}
+
+/* Pause when the reader hovers the strip. */
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* No motion: hold the row still (the logos remain visible and readable). */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
     animation: none;
+    transform: none;
   }
 }

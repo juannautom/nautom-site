@@ -1,10 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY!);
-
 export async function POST(req: NextRequest) {
   try {
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      console.error("RESEND_API_KEY is not configured.");
+      return NextResponse.json(
+        { error: "Contact service is not configured." },
+        { status: 503 }
+      );
+    }
+
     const body = await req.json();
     const { name, email, phone, company, message } = body;
 
@@ -14,6 +21,9 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
+
+    // Lazy init: instantiate inside the handler so the build never needs the key.
+    const resend = new Resend(apiKey);
 
     await resend.emails.send({
       from: "Nautom Contact <contact@nautom.com>",
